@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<registration>
+
+	<tool
+			id="sakai.UCT.AccountInfo"
+			title="UCT Account Info"
+			description="Informantion on UCT Network Accounts">
+
+		<category name="sakai.UCT" />
+
+	</tool>
+
+</registration>

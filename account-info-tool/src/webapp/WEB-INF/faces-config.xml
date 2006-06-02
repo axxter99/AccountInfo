@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+ Copyright 2004 ArcMind, Inc. All rights reserved.
+ from http://www-106.ibm.com/developerworks/library/j-jsf1/
+-->
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+
+<faces-config>
+
+  <application>
+    <locale-config>
+      <default-locale>en</default-locale>
+    </locale-config>
+  </application>
+
+  <navigation-rule>
+    <from-view-id>/main.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>list</from-outcome>
+      <to-view-id>/list.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/list.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/acme/calculator.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/acme/results.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/acme/calculator.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>trouble</from-outcome>
+      <to-view-id>/acme/calculator.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/acme/results.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>calculate</from-outcome>
+      <to-view-id>/acme/calculator.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+  
+  <managed-bean>
+    <description>
+      The "backing file" bean that backs up the calculator webapp
+    </description>
+    <managed-bean-name>CalcBean</managed-bean-name>
+    <managed-bean-class>com.arcmind.jsfquickstart.controller.CalculatorConroller</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+
+	<application>
+		<locale-config>
+			<default-locale>en_US</default-locale>
+		</locale-config>
+		<message-bundle>sample.messages</message-bundle>
+	</application>
+
+</faces-config>
