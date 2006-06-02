@@ -207,7 +207,7 @@
 	<build>
 
 		<!-- java source -->
-		<sourceDirectory>account-info-tool/src/java</sourceDirectory>
+		<sourceDirectory>src/java</sourceDirectory>
 
 		<resources>
 			<resource>
