@@ -117,7 +117,7 @@ public class UCTLDAPUser  {
 			     System.out.println("Invalid Date Parser Exception");
 			     e.printStackTrace();
 			}
-			System.out.println("Finished Date Function " + myDate.getDay());
+			//System.out.println("Finished Date Function " + myDate.getDay());
 			setAccountExpiry(myDate);
 
 			} else {
@@ -158,7 +158,7 @@ public class UCTLDAPUser  {
 		accountExpiry = newDate;
 	}
 	
-	public Date getAccountExiry() {
+	public Date getAccountExpiry() {
 		return accountExpiry;
 	}
 	

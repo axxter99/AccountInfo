@@ -4,6 +4,7 @@
 package org.sakaiproject.tool.accountinfo.rsf;
 
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
