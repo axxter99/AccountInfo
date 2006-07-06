@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--  Request-scope beans for TaskList - actually just the handler -->
+<beans>
+
+<bean id="accountInfoBean" class="org.sakaiproject.tool.accountinfo.rsf.AccountInfoBean">
+<!--  <property name="accountInfoManager" ref="accountInfoManager"/>-->
+</bean>
+
+</beans>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<registration>
+	<tool id="sakai.rsf.accountinfo"
+		title="UCT Account Information"
+		description="Account inf for uct users">
+
+	</tool>	
+</registration>

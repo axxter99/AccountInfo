@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- documented by aaronz@vt.edu -->
+<!-- RSF version by antranig@caret.cam.ac.uk - 
+	some contents moved from "spring-beans.xml" -->
+<beans>
+
+	<!--  Spring messageSource replaces JSF message-bundle from faces-config.xml -->
+	<bean id="messageSource" parent="messageSource-base">
+		<property name="basename"
+			value="classpath:org/sakaiproject/tool/accountInfo/bundle/Messages" />
+	</bean>
+
+
+
+
+
+	<!-- the next 2 blocks are basically 2 different ways of implementing the 
+		data access layer, the first uses in-memory storage, the second uses
+		hibernate and ORM stuff -->
+
+
+
+	<!-- TaskListService destroyed from JSF version, replaced with 
+		TaskListProducer -->
+
+	<bean id="AccountInfoProducer"
+		class="org.sakaiproject.tool.accountinfo.rsf.AccountInfoProducer">
+		<property name="toolManager"
+			ref="org.sakaiproject.tool.api.ToolManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+		<property name="localeGetter" ref="sakai-LocaleProxy" />
+		<property name="messageLocator" ref="sakai-messageLocator"/>
+	</bean>
+
+
+</beans>
