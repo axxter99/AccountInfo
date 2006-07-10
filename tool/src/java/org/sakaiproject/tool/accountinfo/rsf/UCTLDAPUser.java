@@ -55,6 +55,7 @@ public class UCTLDAPUser  {
 	private static final String PASSWORDEXPIRATIONTIME = "passwordExpirationTime";
 	
 	private static final String IMAP_HOST = "mail.uct.ac.za";
+	private static final boolean TRY_LDAP = false;
 	
 	public UCTLDAPUser(User user)
 	{
