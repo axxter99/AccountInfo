@@ -37,6 +37,7 @@ import uk.org.ponder.stringutil.LocaleGetter;
 import uk.org.ponder.stringutil.StringList;
 
 import org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser;
+import edu.amc.sakai.user.JLDAPDirectoryProvider;
 
 public class AccountInfoProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
@@ -82,8 +83,11 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  Date passExp = uctUser.getAccountExpiry();
 	  DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
 	  UIOutput.make(tofill, "ldap-pass-expires", df.format(passExp));
-
-  
+	  if (uctUser.getAccountIsExpired()==true) {
+		  UIOutput.make(tofill, "ldap-password-good", "your password has expired. You should update it emediatly");
+	  }
+	  
+	  
 
     
 
