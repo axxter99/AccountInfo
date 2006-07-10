@@ -180,7 +180,7 @@ public class UCTLDAPUser  {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		 */
+		 
 		
 		
 	
