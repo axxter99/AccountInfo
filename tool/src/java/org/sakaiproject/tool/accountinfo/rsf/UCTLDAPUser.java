@@ -16,6 +16,12 @@ import com.novell.ldap.LDAPAttribute;
 
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.User; 
+import org.sakaiproject.tool.cover.SessionManager;
+import org.sakaiproject.tool.api.Session;
+
+import java.util.Properties;
+import javax.mail.*;
+import com.sun.mail.imap.*;
 
 /*
  * a method to get a decorated user for LDAP.
@@ -23,7 +29,7 @@ import org.sakaiproject.user.api.User;
  */
 public class UCTLDAPUser  {
 
-	private String ldapHost = "rep1.uct.ac.za"; //address of ldap server
+	private String ldapHost = "rep1.uct.ac.za edir1.uct.ac.za"; //address of ldap server
 	private int ldapPort = 389; //port to connect to ldap server on
 	private String keystoreLocation = "/usr/local/sakai"; // keystore location (only needed for SSL connections)
 	private String keystorePassword = "changeit"; // keystore password (only needed for SSL connections)
@@ -40,11 +46,15 @@ public class UCTLDAPUser  {
 	private Date accountExpiry;
 	private int unReadEmail;
 	private boolean accountIsExpired = false;
+	private int newMailMessages;
+	
 	
 	
 	private static final String GRACELOGINSREMAINING = "loginGraceRemaining";
 	private static final String GRACELOGINSTOTAL = "loginGraceLimit";
 	private static final String PASSWORDEXPIRATIONTIME = "passwordExpirationTime";
+	
+	private static final String IMAP_HOST = "mail.uct.ac.za";
 	
 	public UCTLDAPUser(User user)
 	{
@@ -57,6 +67,8 @@ public class UCTLDAPUser  {
 				GRACELOGINSREMAINING,
 				PASSWORDEXPIRATIONTIME
 		};
+		Date myDate = null;
+		
 		//create new ldap connection
 		LDAPConnection conn = new LDAPConnection();	
 		LDAPConstraints cons = new LDAPConstraints();
@@ -107,10 +119,11 @@ public class UCTLDAPUser  {
 			*/
 			//setAccountExpiry(new Date(yr,mt,dy));
 			// novell format is 20060816070250Z
-			String strFormat = "yyyyMMdd"; //kmSz";
-			strDate = strDate.substring(0,8);
+			String strFormat = "yyyyMMddkm"; //kmSz";
+			strDate = strDate.substring(0,12);
 			DateFormat myDateFormat = new SimpleDateFormat(strFormat);
-			Date myDate = null;
+			
+			
 			try {
 			     myDate = myDateFormat.parse(strDate);
 			} catch (Exception e) {
@@ -124,11 +137,55 @@ public class UCTLDAPUser  {
 				System.out.println("ERROR: not found in LDAP");
 			}
 			
+			
+			if (myDate.before(new Date())) {
+				System.out.println("Account has expired!");
+				setAccountIsExpired(true);
+			}
+			/*
+			 * Get LDAP details
+			 * 
+			*/
+			
+//			 Get a Properties object
+			if (TRY_LDAP) {
+				Properties props = System.getProperties();
+				// Get a Properties object
+				props.put("mail.imaps.host",IMAP_HOST);
+				props.put("mail.imaps.port", "993");
+				
+				//Authenticator auth=new myauth(name,passwd);
+				// Get a Session object
+				javax.mail.Session mailSession = javax.mail.Session.getInstance(props, null);
+				mailSession.setDebug(true);
+	
+				// Get a Store object
+				Store store = null;
+				
+				
+				
+				store = mailSession.getStore("imaps");
+				//user.getEid()
+				String pass = (String)SessionManager.getCurrentSession().getAttribute("netPasswd");
+				store.connect(IMAP_HOST, "dhorwitz_its_main_uct", pass);
+				Folder folder = store.getDefaultFolder();
+				int newMessages = folder.getNewMessageCount();
+				System.out.println("Got some new messages!" + newMessages);
+				setNewMailMessages(newMessages);
+				folder.close(true);
+				
+			}
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+		 */
+		
+		
+	
+	
+	} //end constructor
 	
 	
 	/*
@@ -171,6 +228,14 @@ public class UCTLDAPUser  {
 		return accountIsExpired;
 	}
 	
+	
+	public int getNewMailMessages(){
+		return newMailMessages;
+	}
+	
+	public void setNewMailMessages(int newVal){
+		newMailMessages = newVal;
+	}
 	//internal methods adopted from the Jldap porvidor
 	//search the directory to get an entry
 	private LDAPEntry getEntryFromDirectory(String searchFilter, String[] attribs, LDAPConnection conn)
