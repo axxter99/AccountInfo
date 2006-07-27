@@ -84,7 +84,7 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
 	  UIOutput.make(tofill, "ldap-pass-expires", df.format(passExp));
 	  if (uctUser.getAccountIsExpired()==true) {
-		  UIOutput.make(tofill, "ldap-password-good", "your password has expired. You should update it emediatly");
+		  UIOutput.make(tofill, "ldap-password-good", "your password has expired. You should update it immediately");
 	  }
 	  
 	  
