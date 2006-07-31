@@ -81,7 +81,7 @@ public class UCTLDAPUser  {
 		//connect to ldap server
 		try {
 			conn.connect( ldapHost, ldapPort );
-			System.out.println("Searching for " + searchFilter);
+			//System.out.println("Searching for " + searchFilter);
 			LDAPEntry thisLdap = getEntryFromDirectory(searchFilter,attrList,conn);
 			if (thisLdap != null) {
 			
@@ -259,7 +259,7 @@ public class UCTLDAPUser  {
 			i++;
             nextEntry = searchResults.next();            
 		 }
-		System.out.println("found " + i + "results");
+		//System.out.println("found " + i + "results");
 		return nextEntry;
 	}
 	/**
