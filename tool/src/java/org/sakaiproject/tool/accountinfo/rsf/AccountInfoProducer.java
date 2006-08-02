@@ -85,7 +85,7 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  UIOutput.make(tofill, "ldap-pass-expires", df.format(passExp));
 	  if (uctUser.getAccountIsExpired()==true) {
 		  UIOutput.make(tofill, "ldap-password-good", "your password has expired. You should update it immediately");
-		  UIOutput.make(tofill, "ldap-gracelogins-total", uctUser.getGraceLoginsTotal() + "/" + uctUser.getGraceLoginsRemaining());
+		  UIOutput.make(tofill, "ldap-gracelogins-remaining","Grace Logins remaining: " + uctUser.getGraceLoginsTotal() + "/" + uctUser.getGraceLoginsRemaining());
 	  } else {
 		  UIOutput.make(tofill, "ldap-password-good", "");
 		  UIOutput.make(tofill, "ldap-gracelogins-total", "");
