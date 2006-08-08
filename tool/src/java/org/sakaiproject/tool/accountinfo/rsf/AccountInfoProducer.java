@@ -101,16 +101,19 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  
 	  
 	  Date passExp = uctUser.getAccountExpiry();
-	  DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
-	  UIOutput.make(tofill, "ldap-pass-expires", df.format(passExp));
-	  if (uctUser.getAccountIsExpired()==true) {
-		  UIOutput.make(tofill, "ldap-password-good", messageLocator.getMessage("passwd_exp_msg"));
-		  UIOutput.make(tofill, "ldap-gracelogins-remaining", messageLocator.getMessage("grace_logins_label")+ " " + uctUser.getGraceLoginsTotal() + "/" + uctUser.getGraceLoginsRemaining());
-	  } else {
-		  UIOutput.make(tofill, "ldap-password-good", "");
-		  UIOutput.make(tofill, "ldap-gracelogins-total", "");
-	  }
+	  if (passExp != null)
+	  {
+		  DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
+		  UIOutput.make(tofill, "ldap-pass-expires", df.format(passExp));
+		  if (uctUser.getAccountIsExpired()==true) {
+			  UIOutput.make(tofill, "ldap-password-good", messageLocator.getMessage("passwd_exp_msg"));
+			  UIOutput.make(tofill, "ldap-gracelogins-remaining", messageLocator.getMessage("grace_logins_label")+ " " + uctUser.getGraceLoginsTotal() + "/" + uctUser.getGraceLoginsRemaining());
+		  } else {
+			  UIOutput.make(tofill, "ldap-password-good", "");
+			  UIOutput.make(tofill, "ldap-gracelogins-total", "");
+		  }
 	  
+	  }
 	  
 
     
