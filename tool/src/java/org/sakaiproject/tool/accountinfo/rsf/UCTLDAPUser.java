@@ -129,31 +129,32 @@ public class UCTLDAPUser  {
 			String strDate = null;
 			if (atrDate != null ) {
 				strDate = atrDate.getStringValue();
+				/*
+				String yr = strDate.substring(0,4);
+				String mt = strDate.substring(5,7);
+				String dy = strDate.substring(8,10);
+				System.out.println("Date is " + yr + " " + mt + " " + dy);
+				*/
+				//setAccountExpiry(new Date(yr,mt,dy));
+				// novell format is 20060816070250Z
+				String strFormat = "yyyyMMddkm"; //kmSz";
+				strDate = strDate.substring(0,12);
+				DateFormat myDateFormat = new SimpleDateFormat(strFormat);
+				
+				
+				try {
+				     myDate = myDateFormat.parse(strDate);
+				} catch (Exception e) {
+				     System.out.println("Invalid Date Parser Exception");
+				     e.printStackTrace();
+				}
+				//System.out.println("Finished Date Function " + myDate.getDay());
+				setAccountExpiry(myDate);
 			} else {
-				strDate ="21060816070250Z";
+				//strDate ="21060816070250Z";
 			}
 			
-			/*
-			String yr = strDate.substring(0,4);
-			String mt = strDate.substring(5,7);
-			String dy = strDate.substring(8,10);
-			System.out.println("Date is " + yr + " " + mt + " " + dy);
-			*/
-			//setAccountExpiry(new Date(yr,mt,dy));
-			// novell format is 20060816070250Z
-			String strFormat = "yyyyMMddkm"; //kmSz";
-			strDate = strDate.substring(0,12);
-			DateFormat myDateFormat = new SimpleDateFormat(strFormat);
-			
-			
-			try {
-			     myDate = myDateFormat.parse(strDate);
-			} catch (Exception e) {
-			     System.out.println("Invalid Date Parser Exception");
-			     e.printStackTrace();
-			}
-			//System.out.println("Finished Date Function " + myDate.getDay());
-			setAccountExpiry(myDate);
+
 
 			} else {
 				System.out.println("ERROR: not found in LDAP");
@@ -200,6 +201,7 @@ public class UCTLDAPUser  {
 			
 		}
 		catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		 
