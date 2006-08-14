@@ -150,6 +150,10 @@ public class UCTLDAPUser  {
 				}
 				//System.out.println("Finished Date Function " + myDate.getDay());
 				setAccountExpiry(myDate);
+				if (myDate.before(new Date())) {
+					System.out.println("Account has expired!");
+					setAccountIsExpired(true);
+				}
 			} else {
 				//strDate ="21060816070250Z";
 			}
@@ -161,10 +165,7 @@ public class UCTLDAPUser  {
 			}
 			
 			
-			if (myDate.before(new Date())) {
-				System.out.println("Account has expired!");
-				setAccountIsExpired(true);
-			}
+
 			/*
 			 * Get LDAP details
 			 * 
