@@ -12,15 +12,6 @@
 	</bean>
 
 
-
-
-
-	<!-- the next 2 blocks are basically 2 different ways of implementing the 
-		data access layer, the first uses in-memory storage, the second uses
-		hibernate and ORM stuff -->
-
-
-
 	<!-- TaskListService destroyed from JSF version, replaced with 
 		TaskListProducer -->
 
@@ -34,5 +25,9 @@
 		<property name="messageLocator" ref="sakai-messageLocator"/>
 	</bean>
 
-
+	<bean id="UCTLDAPUser"
+		class="org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser">
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+	</bean>
 </beans>
