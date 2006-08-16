@@ -117,15 +117,7 @@ public class UCTLDAPUser  {
 				//get the user eid
 				String eid = userDirectoryService.getCurrentUser().getEid();
 				
-				// string array of attribs to get from the directory
-				String[] attrList = new String[] {	
-						GRACELOGINSTOTAL,
-						"objectClass",
-						"aliasedObjectName",
-						GRACELOGINSREMAINING,
-						PASSWORDEXPIRATIONTIME
-						
-				};
+
 				thisLdap = this.getEntryFromDirectory(eid,attrList,conn);
 				
 			}
