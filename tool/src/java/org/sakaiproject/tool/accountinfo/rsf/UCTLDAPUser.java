@@ -83,6 +83,9 @@ public class UCTLDAPUser  {
 		    this.userDirectoryService = userDirectoryService;
 		  }
 	
+	public UCTLDAPUser(){
+		
+	}
 	public UCTLDAPUser(User user)
 	{
 		//string array of attribs to get from the directory
