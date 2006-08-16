@@ -268,6 +268,7 @@ public class UCTLDAPUser  {
 		throws LDAPException
 	{
 		LDAPEntry nextEntry = null;
+		System.out.println("About to get entry for " + dn);
 		nextEntry = conn.read(dn);
 		//System.out.println("found " + i + "results");
 		return nextEntry;
