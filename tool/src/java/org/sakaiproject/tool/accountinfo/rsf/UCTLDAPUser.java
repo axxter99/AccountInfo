@@ -39,7 +39,7 @@ import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.User; 
 import org.sakaiproject.tool.cover.SessionManager;
 import org.sakaiproject.tool.api.Session;
-
+import org.sakaiproject.entity.api.EntityProducer;
 import java.util.Properties;
 import javax.mail.*;
 import com.sun.mail.imap.*;
@@ -78,6 +78,11 @@ public class UCTLDAPUser  {
 	private static final String IMAP_HOST = "mail.uct.ac.za";
 	private static final boolean TRY_LDAP = false;
 	
+	private UserDirectoryService userDirectoryService;
+	  public void setUserDirectoryService(UserDirectoryService userDirectoryService) {
+		    this.userDirectoryService = userDirectoryService;
+		  }
+	
 	public UCTLDAPUser(User user)
 	{
 		//string array of attribs to get from the directory
@@ -103,8 +108,27 @@ public class UCTLDAPUser  {
 			conn.connect( ldapHost, ldapPort );
 			//System.out.println("Searching for " + searchFilter);
 			
-			String dn = (String)SessionManager.getCurrentSession().getAttribute("netDn");;
-			LDAPEntry thisLdap = getEntryFromDirectory(dn,conn);
+			String dn = (String)SessionManager.getCurrentSession().getAttribute("netDn");
+			LDAPEntry thisLdap = null;
+			if (dn != null )
+			{
+				thisLdap = getEntryFromDirectory(dn,conn);
+			} else {
+				//get the user eid
+				String eid = userDirectoryService.getCurrentUser().getEid();
+				
+				// string array of attribs to get from the directory
+				String[] attrList = new String[] {	
+						GRACELOGINSTOTAL,
+						"objectClass",
+						"aliasedObjectName",
+						GRACELOGINSREMAINING,
+						PASSWORDEXPIRATIONTIME
+						
+				};
+				thisLdap = this.getEntryFromDirectory(eid,attrList,conn);
+				
+			}
 			if (thisLdap != null) {
 			
 			LDAPAttribute glAtr = thisLdap.getAttribute(GRACELOGINSREMAINING);
@@ -263,7 +287,7 @@ public class UCTLDAPUser  {
 		newMailMessages = newVal;
 	}
 	//internal methods adopted from the Jldap porvidor
-	//search the directory to get an entry
+	//get a specific entry from the directory 
 	private LDAPEntry getEntryFromDirectory(String dn, LDAPConnection conn)
 		throws LDAPException
 	{
@@ -273,6 +297,32 @@ public class UCTLDAPUser  {
 		//System.out.println("found " + i + "results");
 		return nextEntry;
 	}
+	
+	
+	//search the directory to get an entry
+	private LDAPEntry getEntryFromDirectory(String searchFilter, String[] attribs, LDAPConnection conn)
+		throws LDAPException
+	{
+		LDAPEntry nextEntry = null;
+		LDAPSearchConstraints cons = new LDAPSearchConstraints();
+		cons.setDereference(LDAPSearchConstraints.DEREF_NEVER);		
+		cons.setTimeLimit(operationTimeout);
+		
+		LDAPSearchResults searchResults =
+			conn.search(getBasePath(),
+					LDAPConnection.SCOPE_SUB,
+					searchFilter,
+					attribs,
+			        false,
+					cons);
+		
+		if(searchResults.hasMore()){
+            		nextEntry = searchResults.next();            
+		 }
+		return nextEntry;
+	}
+	
+	
 	/**
 	 * @return Returns the basePath.
 	 */
