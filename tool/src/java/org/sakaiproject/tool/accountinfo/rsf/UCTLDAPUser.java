@@ -50,7 +50,7 @@ import com.sun.mail.imap.*;
  */
 public class UCTLDAPUser  {
 
-	private String ldapHost = "rep1.uct.ac.za edir1.uct.ac.za"; //address of ldap server
+	private String ldapHost = "edir1.uct.ac.za srvnovnds001.uct.ac.za"; //address of ldap server
 	private int ldapPort = 389; //port to connect to ldap server on
 	private String keystoreLocation = "/usr/local/sakai"; // keystore location (only needed for SSL connections)
 	private String keystorePassword = "changeit"; // keystore password (only needed for SSL connections)
@@ -97,13 +97,14 @@ public class UCTLDAPUser  {
 		
 		cons.setTimeLimit(operationTimeout);
 		
-		conn.setConstraints(cons);
-		String searchFilter = "cn=" + user.getEid();
+
 		//connect to ldap server
 		try {
 			conn.connect( ldapHost, ldapPort );
 			//System.out.println("Searching for " + searchFilter);
-			LDAPEntry thisLdap = getEntryFromDirectory(searchFilter,attrList,conn);
+			
+			String dn = (String)SessionManager.getCurrentSession().getAttribute("netDn");;
+			LDAPEntry thisLdap = getEntryFromDirectory(dn,conn);
 			if (thisLdap != null) {
 			
 			LDAPAttribute glAtr = thisLdap.getAttribute(GRACELOGINSREMAINING);
@@ -263,26 +264,11 @@ public class UCTLDAPUser  {
 	}
 	//internal methods adopted from the Jldap porvidor
 	//search the directory to get an entry
-	private LDAPEntry getEntryFromDirectory(String searchFilter, String[] attribs, LDAPConnection conn)
+	private LDAPEntry getEntryFromDirectory(String dn, LDAPConnection conn)
 		throws LDAPException
 	{
 		LDAPEntry nextEntry = null;
-		LDAPSearchConstraints cons = new LDAPSearchConstraints();
-		cons.setDereference(LDAPSearchConstraints.DEREF_NEVER);		
-		cons.setTimeLimit(operationTimeout);
-		
-		LDAPSearchResults searchResults =
-			conn.search(getBasePath(),
-					LDAPConnection.SCOPE_SUB,
-					searchFilter,
-					attribs,
-			        false,
-					cons);
-		int i = 0;
-		if(searchResults.hasMore()){
-			i++;
-            nextEntry = searchResults.next();            
-		 }
+		nextEntry = conn.read(dn);
 		//System.out.println("found " + i + "results");
 		return nextEntry;
 	}
