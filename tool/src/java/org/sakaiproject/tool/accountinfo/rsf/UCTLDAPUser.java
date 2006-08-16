@@ -115,8 +115,8 @@ public class UCTLDAPUser  {
 				thisLdap = getEntryFromDirectory(dn,conn);
 			} else {
 				//get the user eid
-				User user = userDirectoryService.getCurrentUser();
-				String eid = user.getEid();
+				
+				String eid = userDirectoryService.getCurrentUser().getEid();
 				thisLdap = this.getEntryFromDirectory(eid,attrList,conn);
 				
 			}
