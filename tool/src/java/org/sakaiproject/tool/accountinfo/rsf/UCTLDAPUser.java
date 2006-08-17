@@ -115,7 +115,7 @@ public class UCTLDAPUser  {
 				//get the user eid
 				
 				String eid = user.getEid();
-				thisLdap = this.getEntryFromDirectory(eid,attrList,conn);
+				thisLdap = this.getEntryFromDirectory("cn="+ eid,attrList,conn);
 				
 			}
 			if (thisLdap != null) {
