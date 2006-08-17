@@ -78,14 +78,9 @@ public class UCTLDAPUser  {
 	private static final String IMAP_HOST = "mail.uct.ac.za";
 	private static final boolean TRY_LDAP = false;
 	
-	private UserDirectoryService userDirectoryService;
-	  public void setUserDirectoryService(UserDirectoryService userDirectoryService) {
-		    this.userDirectoryService = userDirectoryService;
-		  }
+
 	
-	public UCTLDAPUser(){
-		
-	}
+
 	public UCTLDAPUser(User user)
 	{
 		//string array of attribs to get from the directory
@@ -119,7 +114,7 @@ public class UCTLDAPUser  {
 			} else {
 				//get the user eid
 				
-				String eid = userDirectoryService.getCurrentUser().getEid();
+				String eid = user.getEid();
 				thisLdap = this.getEntryFromDirectory(eid,attrList,conn);
 				
 			}

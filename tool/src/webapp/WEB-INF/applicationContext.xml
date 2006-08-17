@@ -25,9 +25,4 @@
 		<property name="messageLocator" ref="sakai-messageLocator"/>
 	</bean>
 
-	<bean id="UCTLDAPUser"
-		class="org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser">
-		<property name="userDirectoryService"
-			ref="org.sakaiproject.user.api.UserDirectoryService" />
-	</bean>
 </beans>
