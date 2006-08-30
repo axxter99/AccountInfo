@@ -6,11 +6,14 @@
 <beans>
 
 	<!--  Spring messageSource replaces JSF message-bundle from faces-config.xml -->
-	<bean id="messageSource" parent="messageSource-base">
-		<property name="basename"
+		  <bean id="messageSource"
+    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename"
 			value="classpath:org/sakaiproject/tool/accountinfo/bundle/Messages" />
-	</bean>
-
+    <property name="cacheSeconds" value="10" />
+  </bean>
+  
+  
 
 	<!-- TaskListService destroyed from JSF version, replaced with 
 		TaskListProducer -->
@@ -22,7 +25,7 @@
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="localeGetter" ref="sakai-LocaleProxy" />
-		<property name="messageLocator" ref="sakai-messageLocator"/>
+		<property name="messageLocator" ref="messageLocator"/>
 	</bean>
 
 </beans>
