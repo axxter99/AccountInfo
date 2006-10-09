@@ -30,6 +30,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.tool.api.ToolManager;
 //import org.sakaiproject.tool.tasklist.api.Task;
 ///import org.sakaiproject.tool.tasklist.api.TaskListManager;
@@ -57,6 +59,9 @@ import uk.org.ponder.stringutil.LocaleGetter;
 import uk.org.ponder.stringutil.StringList;
 
 import org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser;
+import org.sakaiproject.tool.poll.rsf.ResultsProducer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import edu.amc.sakai.user.JLDAPDirectoryProvider;
 
 public class AccountInfoProducer implements ViewComponentProducer,
@@ -72,6 +77,7 @@ public class AccountInfoProducer implements ViewComponentProducer,
     return VIEW_ID;
   }
 
+  private static Log m_log  = LogFactory.getLog(AccountInfoProducer.class);
   public void setMessageLocator(MessageLocator messageLocator) {
     this.messageLocator = messageLocator;
   }

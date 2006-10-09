@@ -35,14 +35,19 @@ import com.novell.ldap.LDAPSocketFactory;
 import com.novell.ldap.LDAPConstraints;
 import com.novell.ldap.LDAPAttribute;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.User; 
 import org.sakaiproject.tool.cover.SessionManager;
+import org.sakaiproject.tool.poll.rsf.ResultsProducer;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.entity.api.EntityProducer;
 import java.util.Properties;
 import javax.mail.*;
 import com.sun.mail.imap.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /*
  * a method to get a decorated user for LDAP.
@@ -79,7 +84,7 @@ public class UCTLDAPUser  {
 	private static final boolean TRY_LDAP = false;
 	
 
-	
+	private static Log m_log  = LogFactory.getLog(ResultsProducer.class);
 
 	public UCTLDAPUser(User user)
 	{
