@@ -59,7 +59,6 @@ import uk.org.ponder.stringutil.LocaleGetter;
 import uk.org.ponder.stringutil.StringList;
 
 import org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser;
-import org.sakaiproject.tool.poll.rsf.ResultsProducer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import edu.amc.sakai.user.JLDAPDirectoryProvider;
