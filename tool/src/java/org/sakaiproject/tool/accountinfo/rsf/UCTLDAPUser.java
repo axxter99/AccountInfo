@@ -163,13 +163,13 @@ public class UCTLDAPUser  {
 				try {
 				     myDate = myDateFormat.parse(strDate);
 				} catch (Exception e) {
-				     System.out.println("Invalid Date Parser Exception");
+				     m_log.info("Invalid Date Parser Exception");
 				     e.printStackTrace();
 				}
 				//System.out.println("Finished Date Function " + myDate.getDay());
 				setAccountExpiry(myDate);
 				if (myDate.before(new Date())) {
-					System.out.println("Account has expired!");
+					m_log.warn("Account has expired!");
 					setAccountIsExpired(true);
 				}
 			} else {
@@ -179,7 +179,7 @@ public class UCTLDAPUser  {
 
 
 			} else {
-				System.out.println("ERROR: not found in LDAP");
+				m_log.warn("ERROR: not found in LDAP");
 			}
 			
 			
@@ -285,7 +285,7 @@ public class UCTLDAPUser  {
 		throws LDAPException
 	{
 		LDAPEntry nextEntry = null;
-		System.out.println("About to get entry for " + dn);
+		m_log.info("About to get entry for " + dn);
 		nextEntry = conn.read(dn);
 		//System.out.println("found " + i + "results");
 		return nextEntry;
