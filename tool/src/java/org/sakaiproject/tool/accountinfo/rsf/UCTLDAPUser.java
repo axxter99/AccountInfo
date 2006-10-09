@@ -40,7 +40,6 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.User; 
 import org.sakaiproject.tool.cover.SessionManager;
-import org.sakaiproject.tool.poll.rsf.ResultsProducer;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.entity.api.EntityProducer;
 import java.util.Properties;
@@ -84,7 +83,7 @@ public class UCTLDAPUser  {
 	private static final boolean TRY_LDAP = false;
 	
 
-	private static Log m_log  = LogFactory.getLog(ResultsProducer.class);
+	private static Log m_log  = LogFactory.getLog(UCTLDAPUser.class);
 
 	public UCTLDAPUser(User user)
 	{
