@@ -50,7 +50,7 @@ import com.sun.mail.imap.*;
  */
 public class UCTLDAPUser  {
 
-	private String ldapHost = "edir1.uct.ac.za srvnovnds001.uct.ac.za"; //address of ldap server
+	private String ldapHost = "srvnovnds001.uct.ac.za edir1.uct.ac.za"; //address of ldap server
 	private int ldapPort = 389; //port to connect to ldap server on
 	private String keystoreLocation = "/usr/local/sakai"; // keystore location (only needed for SSL connections)
 	private String keystorePassword = "changeit"; // keystore password (only needed for SSL connections)
