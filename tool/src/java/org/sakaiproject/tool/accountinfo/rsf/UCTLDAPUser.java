@@ -42,6 +42,7 @@ import org.sakaiproject.user.api.User;
 import org.sakaiproject.tool.cover.SessionManager;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.entity.api.EntityProducer;
+import org.sakaiproject.component.cover.ServerConfigurationService;
 import java.util.Properties;
 import javax.mail.*;
 import com.sun.mail.imap.*;
@@ -54,7 +55,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class UCTLDAPUser  {
 
-	private String ldapHost = "srvnovnds001.uct.ac.za edir1.uct.ac.za"; //address of ldap server
+	private String ldapHost = ServerConfigurationService.getString("accountInfo.ldapServers"); //address of ldap server
 	private int ldapPort = 389; //port to connect to ldap server on
 	private String keystoreLocation = "/usr/local/sakai"; // keystore location (only needed for SSL connections)
 	private String keystorePassword = "changeit"; // keystore password (only needed for SSL connections)
@@ -163,7 +164,7 @@ public class UCTLDAPUser  {
 				try {
 				     myDate = myDateFormat.parse(strDate);
 				} catch (Exception e) {
-				     m_log.info("Invalid Date Parser Exception");
+				     m_log.error("Invalid Date Parser Exception");
 				     e.printStackTrace();
 				}
 				//System.out.println("Finished Date Function " + myDate.getDay());

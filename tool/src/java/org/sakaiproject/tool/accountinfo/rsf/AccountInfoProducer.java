@@ -63,6 +63,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import edu.amc.sakai.user.JLDAPDirectoryProvider;
 
+
 public class AccountInfoProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "AccountInfo";
