@@ -170,7 +170,7 @@ public class UCTLDAPUser  {
 				//System.out.println("Finished Date Function " + myDate.getDay());
 				setAccountExpiry(myDate);
 				if (myDate.before(new Date())) {
-					m_log.warn("Account has expired!");
+					m_log.warn("Account has expired! " + user.getEid());
 					setAccountIsExpired(true);
 				}
 			} else {
