@@ -182,8 +182,8 @@ public class UCTLDAPUser  {
 			} else {
 				m_log.warn("ERROR: not found in LDAP");
 			}
-			
-			
+			//close the ldap connection
+			conn.disconnect();
 
 			/*
 			 * Get LDAP details
