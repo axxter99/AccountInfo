@@ -4,6 +4,6 @@
 	<tool id="sakai.rsf.accountinfo"
 		title="UCT Account Information"
 		description="Account inf for uct users">
-	<configuration name="help.button" value="false" />
+	<configuration name="help.button" value="true" />
 	</tool>	
 </registration>
