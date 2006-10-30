@@ -24,6 +24,7 @@ package org.sakaiproject.tool.accountinfo.rsf;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.security.*;
 
 import com.novell.ldap.LDAPConnection;
 import com.novell.ldap.LDAPEntry;
@@ -44,11 +45,12 @@ import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.entity.api.EntityProducer;
 import org.sakaiproject.component.cover.ServerConfigurationService;
 import java.util.Properties;
-import javax.mail.*;
-import com.sun.mail.imap.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.util.Properties;
+import javax.mail.*;
+import com.sun.mail.imap.*;
 /*
  * a method to get a decorated user for LDAP.
  * 
@@ -192,31 +194,51 @@ public class UCTLDAPUser  {
 			
 //			 Get a Properties object
 			if (TRY_LDAP) {
-				Properties props = System.getProperties();
-				// Get a Properties object
-				props.put("mail.imaps.host",IMAP_HOST);
-				props.put("mail.imaps.port", "993");
 				
-				//Authenticator auth=new myauth(name,passwd);
-				// Get a Session object
-				javax.mail.Session mailSession = javax.mail.Session.getInstance(props, null);
-				mailSession.setDebug(true);
-	
-				// Get a Store object
-				Store store = null;
-				
-				
-				
-				store = mailSession.getStore("imaps");
-				//user.getEid()
-				String pass = (String)SessionManager.getCurrentSession().getAttribute("netPasswd");
-				store.connect(IMAP_HOST, "dhorwitz_its_main_uct", pass);
-				Folder folder = store.getDefaultFolder();
-				int newMessages = folder.getNewMessageCount();
-				System.out.println("Got some new messages!" + newMessages);
-				setNewMailMessages(newMessages);
-				folder.close(true);
-				
+				  Security.addProvider( new com.sun.net.ssl.internal.ssl.Provider());
+				  String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+			      
+			      Properties props = new Properties();
+			 
+			      props.setProperty("mail.store.protocol", "imap");
+			 
+			      props.setProperty("mail.imap.host", IMAP_HOST);
+			      props.setProperty("mail.imap.port", "993");
+			 
+			      props.setProperty( "mail.imap.socketFactory.class", SSL_FACTORY);
+			 
+			      props.setProperty( "mail.imap.socketFactory.fallback", "false");
+			 
+			      props.setProperty( "mail.imap.socketFactory.port", "993");
+			        
+			      java.security.Security.setProperty( "ssl.SocketFactory.provider", SSL_FACTORY);
+			      javax.mail.Session s = javax.mail.Session.getDefaultInstance(props, null);
+			      s.setDebug(true);
+			      
+			      Store store = s.getStore("imap");
+			      
+			      try
+			      {
+			    	  String pass = (String)SessionManager.getCurrentSession().getAttribute("netPasswd");
+			    	  m_log.info(IMAP_HOST + " " + "dhorwitz_its_main_uct " + pass);
+			    	  store.connect(IMAP_HOST, 993,"dhorwitz_its_main_uct", pass);
+			          Folder folder = store.getDefaultFolder();
+			          int newMessages = folder.getNewMessageCount();
+			          m_log.info("Got some new messages!" + newMessages);
+			          setNewMailMessages(newMessages);
+			          folder.close(true);
+			      }
+			      catch (AuthenticationFailedException afe)
+			      {
+			          // no valid authentication
+			    	  m_log.warn("Auth failed for " + user.getEid() + " on mail" + afe);
+			    	  afe.printStackTrace();
+			      }
+			      catch (Exception ge)
+			      
+			      {
+			    	  ge.printStackTrace();
+			      }
 			}
 			
 		}
