@@ -64,7 +64,7 @@ public class UCTLDAPUser  {
 	private String basePath = ""; //base path to start lookups on
 	private boolean secureConnection = true; //whether or not we are using SSL
 	private int operationTimeout = 5000; //default timeout for operations (in ms)
-	
+	private Date cacheTime;
 	
 	/*
 	 *  Values for the user
@@ -248,7 +248,7 @@ public class UCTLDAPUser  {
 		}
 		 
 		
-		
+		this.cacheTime=new Date();	
 	
 	
 	} //end constructor
@@ -338,6 +338,9 @@ public class UCTLDAPUser  {
 		return nextEntry;
 	}
 	
+	public Date getCacheTime() {
+		return this.cacheTime;
+	}
 	
 	/**
 	 * @return Returns the basePath.

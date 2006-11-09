@@ -218,18 +218,18 @@
 			<groupId>javamail</groupId> 
 			<artifactId>mail</artifactId> 
  			<version>1.3.1</version> 
- 			<properties> 
+ 			<!--<properties> 
 				<war.bundle>true</war.bundle> 
-			</properties> 
+			</properties>--> 
 		</dependency> 
 		<!-- needed for mail? -->
 		<dependency> 
 			<groupId>activation</groupId> 
 			<artifactId>activation</artifactId> 
  			<version>1.0.2</version> 
- 			<properties> 
+ 			<!--<properties> 
 				<war.bundle>true</war.bundle> 
-			</properties> 
+			</properties> -->
 		</dependency> 
 	</dependencies>
 

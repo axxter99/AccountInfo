@@ -32,6 +32,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.ToolManager;
 //import org.sakaiproject.tool.tasklist.api.Task;
 ///import org.sakaiproject.tool.tasklist.api.TaskListManager;
@@ -59,6 +60,7 @@ import uk.org.ponder.stringutil.LocaleGetter;
 import uk.org.ponder.stringutil.StringList;
 
 import org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser;
+import org.sakaiproject.tool.cover.SessionManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import edu.amc.sakai.user.JLDAPDirectoryProvider;
@@ -71,6 +73,8 @@ public class AccountInfoProducer implements ViewComponentProducer,
   private ToolManager toolManager;
   private MessageLocator messageLocator;
   private LocaleGetter localegetter;
+  
+  private long CACHETTL = 300000;
 
   public String getViewID() {
 	 System.out.println("GOT View " + VIEW_ID);
@@ -100,8 +104,19 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  
 	  User user = userDirectoryService.getCurrentUser();
 	  String username = user.getDisplayName();
-	  UCTLDAPUser uctUser = new UCTLDAPUser(user);
-    
+		Session session = SessionManager.getCurrentSession();
+		UCTLDAPUser uctUser = null;
+		if (session.getAttribute("ldapUser")==null) {	
+		  uctUser = new UCTLDAPUser(user);
+		  session.setAttribute("ldapUser",uctUser);
+		} else {
+			uctUser = (UCTLDAPUser) session.getAttribute("ldapUser");
+			long cache = new Date().getTime();
+			if (uctUser.getCacheTime().before(new Date(cache - CACHETTL))) {
+				uctUser = new UCTLDAPUser(user);
+				session.setAttribute("ldapUser",uctUser);
+			}
+		}
     
 	  UIOutput.make(tofill, "current-username", username);
 	  
