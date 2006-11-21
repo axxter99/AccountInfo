@@ -172,7 +172,7 @@ public class UCTLDAPUser  {
 				//System.out.println("Finished Date Function " + myDate.getDay());
 				setAccountExpiry(myDate);
 				if (myDate.before(new Date())) {
-					m_log.warn("Account has expired! " + user.getEid());
+					m_log.debug("Account has expired! " + user.getEid());
 					setAccountIsExpired(true);
 				}
 			} else {
@@ -182,7 +182,7 @@ public class UCTLDAPUser  {
 
 
 			} else {
-				m_log.warn("ERROR: not found in LDAP");
+				m_log.warn(" not found in LDAP");
 			}
 			//close the ldap connection
 			conn.disconnect();
