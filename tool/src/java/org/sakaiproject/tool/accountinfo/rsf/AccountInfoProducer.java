@@ -39,7 +39,7 @@ import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
-import uk.org.ponder.errorutil.MessageLocator;
+import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -56,14 +56,14 @@ import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
-import uk.org.ponder.stringutil.LocaleGetter;
+import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.stringutil.StringList;
 
 import org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser;
 import org.sakaiproject.tool.cover.SessionManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import edu.amc.sakai.user.JLDAPDirectoryProvider;
+//import edu.amc.sakai.user.JLDAPDirectoryProvider;
 
 
 public class AccountInfoProducer implements ViewComponentProducer,

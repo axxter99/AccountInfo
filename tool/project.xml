@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>sakairsf</groupId>
 			<artifactId>sakairsf</artifactId>
-			<version>${rsfutil.version}-sakai_${sakai.version}</version>
+			<version>${rsfutil.version}-sakai_2.2.x</version>
 			<type>jar</type>
 			<properties>
 				<war.bundle>true</war.bundle>
@@ -188,11 +188,11 @@
 			<artifactId>sakai-util-api</artifactId>
 			<version>${sakai.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>sakaiproject</groupId>
 			<artifactId>sakai-jldap-provider</artifactId>
 			<version>${sakai.version}</version>
-		</dependency>
+		</dependency>-->
 		<!-- Commons JARS put in shared/lib by Sakai -->
 		<dependency>
 			<groupId>commons-lang</groupId>
