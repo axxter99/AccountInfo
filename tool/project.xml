@@ -103,6 +103,11 @@
           <artifactId>sakai-common-edu-person-api</artifactId>
       	   <version>${sakai.version}</version>
         </dependency>
+		<dependency>
+          <groupId>sakaiproject</groupId>
+          <artifactId>sakai-commponent-api</artifactId>
+      	   <version>${sakai.version}</version>
+        </dependency>
 		<!-- The sakaiproject plugin let's us build our tool without building
 			the entire sakai code base -->
 		<dependency>
