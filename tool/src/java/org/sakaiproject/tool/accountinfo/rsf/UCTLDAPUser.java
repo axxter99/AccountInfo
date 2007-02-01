@@ -124,6 +124,7 @@ public class UCTLDAPUser  {
 		
 		cons.setTimeLimit(operationTimeout);
 		//lets get the system Profile
+		sakaiPersonManager = getSakaiPersonManager();
 		SakaiPerson sp = sakaiPersonManager.getSakaiPerson(user.getId(), sakaiPersonManager.getSystemMutableType());
 		DOB = sp.getDOB();
 		
