@@ -24,6 +24,7 @@ package org.sakaiproject.tool.accountinfo.rsf;
  **********************************************************************************/
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -134,8 +135,11 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  }
 	  
 	  Date dob = uctUser.getDOB();
+	  DateFormat monthday = new SimpleDateFormat("MMMMdd");
+	  String dobStr = monthday.format(dob);
+	  String todayStr = monthday.format(new Date());
 	  
-	  if (dob != null && dob.equals(new Date())) {
+	  if (dob != null && dobStr.equals(todayStr)) {
 		  m_log.info(" its this users BirthDay!");
 	  }
     
