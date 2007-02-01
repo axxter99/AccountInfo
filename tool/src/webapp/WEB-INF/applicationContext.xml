@@ -25,8 +25,11 @@
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="localeGetter" ref="requestLocaleProxy" />
-		<property name="messageLocator" ref="messageLocator"/>
-		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+ 		<property name="messageLocator" ref="messageLocator"/>
 	</bean>
+	
+	<bean id ="UctLdapUser" class="org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser">
+		 <property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+	 </bean>
 
 </beans>
