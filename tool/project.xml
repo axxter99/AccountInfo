@@ -98,7 +98,11 @@
 				<war.bundle>true</war.bundle>
 			</properties>
 		</dependency>
-
+		<dependency>
+          <groupId>sakaiproject</groupId>
+          <artifactId>sakai-common-edu-person-api</artifactId>
+      	   <version>${sakai.version}</version>
+        </dependency>
 		<!-- The sakaiproject plugin let's us build our tool without building
 			the entire sakai code base -->
 		<dependency>
