@@ -177,7 +177,17 @@
 			<artifactId>sakai-user-api</artifactId>
 			<version>${sakai.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>sakaiproject</groupId>
+			<artifactId>sakai-common-type-api</artifactId>
+			<version>${sakai.version}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>sakaiproject</groupId>
+			<artifactId>sakai-common-manager-ap</artifactId>
+			<version>${sakai.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>sakaiproject</groupId>
 			<artifactId>sakai-util</artifactId>
@@ -222,19 +232,16 @@
 			<groupId>javamail</groupId> 
 			<artifactId>mail</artifactId> 
  			<version>1.3.1</version> 
- 			<!--<properties> 
-				<war.bundle>true</war.bundle> 
-			</properties>--> 
 		</dependency> 
 		<!-- needed for mail? -->
 		<dependency> 
 			<groupId>activation</groupId> 
 			<artifactId>activation</artifactId> 
  			<version>1.0.2</version> 
- 			<!--<properties> 
-				<war.bundle>true</war.bundle> 
-			</properties> -->
-		</dependency> 
+		</dependency>
+		
+
+		  
 	</dependencies>
 
 	<build>
