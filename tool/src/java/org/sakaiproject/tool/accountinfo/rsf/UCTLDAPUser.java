@@ -50,6 +50,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.manager.Persistable;
 import org.sakaiproject.api.common.type.Type;
+import org.sakaiproject.component.cover.ComponentManager;
 
 import java.util.Properties;
 import javax.mail.*;
@@ -92,11 +93,17 @@ public class UCTLDAPUser  {
 
 	private static Log m_log  = LogFactory.getLog(UCTLDAPUser.class);
 	
-	public SakaiPersonManager sakaiPersonManager;
+	private SakaiPersonManager sakaiPersonManager;
 	public void setSakaiPersonManager(SakaiPersonManager s){
 		sakaiPersonManager = s;
 	}
 	
+	private SakaiPersonManager getSakaiPersonManager() {
+		if (sakaiPersonManager == null ) {
+			sakaiPersonManager = (SakaiPersonManager) ComponentManager.get(SakaiPersonManager.class.getName());
+		}
+		return this.sakaiPersonManager;
+	}
 	
 	public UCTLDAPUser(User user)
 	{

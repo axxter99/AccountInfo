@@ -141,6 +141,7 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  
 	  if (dob != null && dobStr.equals(todayStr)) {
 		  m_log.info(" its this users BirthDay!");
+		  UIOutput.make(tofill, "bday");
 	  }
     
 
