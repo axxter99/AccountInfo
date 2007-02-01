@@ -49,6 +49,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
+import org.sakaiproject.api.common.manager.Persistable;
+import org.sakaiproject.api.common.type.Type;
 
 import java.util.Properties;
 import javax.mail.*;
