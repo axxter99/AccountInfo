@@ -105,7 +105,7 @@
         </dependency>
 		<dependency>
           <groupId>sakaiproject</groupId>
-          <artifactId>sakai-component-api</artifactId>
+          <artifactId>sakai-component</artifactId>
       	   <version>${sakai.version}</version>
         </dependency>
 		<!-- The sakaiproject plugin let's us build our tool without building
