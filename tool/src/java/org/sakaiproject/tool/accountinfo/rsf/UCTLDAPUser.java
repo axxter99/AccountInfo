@@ -47,6 +47,8 @@ import org.sakaiproject.component.cover.ServerConfigurationService;
 import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.api.common.edu.person.SakaiPerson;
 
 import java.util.Properties;
 import javax.mail.*;
@@ -65,7 +67,7 @@ public class UCTLDAPUser  {
 	private boolean secureConnection = true; //whether or not we are using SSL
 	private int operationTimeout = 5000; //default timeout for operations (in ms)
 	private Date cacheTime;
-	
+	private Date DOB;
 	/*
 	 *  Values for the user
 	 */
@@ -87,7 +89,13 @@ public class UCTLDAPUser  {
 	
 
 	private static Log m_log  = LogFactory.getLog(UCTLDAPUser.class);
-
+	
+	private SakaiPersonManager sakaiPersonManager;
+	public void setSakaiPersonManager(SakaiPersonManager s){
+		sakaiPersonManager = s;
+	}
+	
+	
 	public UCTLDAPUser(User user)
 	{
 		//string array of attribs to get from the directory
@@ -106,6 +114,9 @@ public class UCTLDAPUser  {
 		LDAPConstraints cons = new LDAPConstraints();
 		
 		cons.setTimeLimit(operationTimeout);
+		//lets get the system Profile
+		SakaiPerson sp = sakaiPersonManager.getSakaiPerson(user.getId(), sakaiPersonManager.getSystemMutableType());
+		DOB = sp.getDOB();
 		
 
 		//connect to ldap server
@@ -349,5 +360,8 @@ public class UCTLDAPUser  {
 		return "o=uct";
 	}
 	
+	public Date getDOB() {
+		return this.DOB;
+	}
 	
 }

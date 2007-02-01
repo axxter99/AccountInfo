@@ -133,7 +133,11 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  
 	  }
 	  
-
+	  Date dob = uctUser.getDOB();
+	  
+	  if (dob != null && dob.equals(new Date())) {
+		  m_log.info(" its this users BirthDay!");
+	  }
     
 
   }

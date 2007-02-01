@@ -26,6 +26,7 @@
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="localeGetter" ref="requestLocaleProxy" />
 		<property name="messageLocator" ref="messageLocator"/>
+		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" \>
 	</bean>
 
 </beans>
