@@ -23,7 +23,6 @@ package org.sakaiproject.tool.accountinfo.rsf;
 
 import java.util.Date;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.security.*;
 
 import com.novell.ldap.LDAPConnection;
@@ -55,6 +54,7 @@ import org.sakaiproject.api.common.type.Type;
 import java.util.Properties;
 import javax.mail.*;
 import com.sun.mail.imap.*;
+import java.text.SimpleDateFormat;
 /*
  * a method to get a decorated user for LDAP.
  * 
@@ -92,7 +92,7 @@ public class UCTLDAPUser  {
 
 	private static Log m_log  = LogFactory.getLog(UCTLDAPUser.class);
 	
-	private SakaiPersonManager sakaiPersonManager;
+	public SakaiPersonManager sakaiPersonManager;
 	public void setSakaiPersonManager(SakaiPersonManager s){
 		sakaiPersonManager = s;
 	}
