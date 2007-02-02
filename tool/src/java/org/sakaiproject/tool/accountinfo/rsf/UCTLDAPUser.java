@@ -204,7 +204,7 @@ public class UCTLDAPUser  {
 
 
 			} else {
-				m_log.warn(" not found in LDAP");
+				m_log.warn(" not found in LDAP: " + user.getDisplayId());
 			}
 			//close the ldap connection
 			conn.disconnect();
