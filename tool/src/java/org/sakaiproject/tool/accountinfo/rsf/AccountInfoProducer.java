@@ -135,15 +135,16 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  }
 	  
 	  Date dob = uctUser.getDOB();
-	  DateFormat monthday = new SimpleDateFormat("MMMMdd");
-	  String dobStr = monthday.format(dob);
-	  String todayStr = monthday.format(new Date());
-	  
-	  if (dob != null && dobStr.equals(todayStr)) {
-		  m_log.info(" its this users BirthDay!");
-		  UIOutput.make(tofill, "bday");
+	  if (dob != null) {
+		  DateFormat monthday = new SimpleDateFormat("MMMMdd");
+		  String dobStr = monthday.format(dob);
+		  String todayStr = monthday.format(new Date());
+		  
+		  if (dob != null && dobStr.equals(todayStr)) {
+			  m_log.info(" its this users BirthDay!");
+			  UIOutput.make(tofill, "bday");
+		  }
 	  }
-    
 
   }
 
