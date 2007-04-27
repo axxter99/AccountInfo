@@ -61,6 +61,7 @@ import org.sakaiproject.component.cover.ComponentManager;
 import java.util.Properties;
 import com.sun.mail.imap.*;
 import java.text.SimpleDateFormat;
+import com.maintainet.gwsoap.EasySoap;
 
 //import javax.rmi.CORBA.Stub;
 /*
@@ -136,8 +137,8 @@ public class UCTLDAPUser  {
 		sakaiPersonManager = getSakaiPersonManager();
 		SakaiPerson sp = sakaiPersonManager.getSakaiPerson(user.getId(), sakaiPersonManager.getSystemMutableType());
 		if (sp !=null)
-			DOB = sp.getDOB();
-		
+			//DOB = sp.getDOB();
+		DOB = new Date();
 
 		//connect to ldap server
 		try {
@@ -234,7 +235,16 @@ public class UCTLDAPUser  {
 			
 			e.printStackTrace();
 		}
-		 
+		String PO= "staffp1";
+		try {
+		EasySoap es = new EasySoap(PO + ".uct.ac.za","7191","",user.getEid(),"connect5");
+		m_log.info("logged in as " + es.getUser());
+		es.logout();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		//this.getUserNewMail(user.getEid(), PO);
 		
 		this.cacheTime=new Date();	
 	
@@ -358,7 +368,7 @@ public class UCTLDAPUser  {
 		  
 		  ptLogin.setUsername(userId);
 
-		  ptLogin.setPassword("demouserpassword");
+		  ptLogin.setPassword("connect5");
 
 		  // Make the call to the loginRequest
 		  try {

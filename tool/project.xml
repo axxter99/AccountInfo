@@ -72,14 +72,13 @@
 			</properties>
 		</dependency>
 		<dependency>
-			<groupId>springframework</groupId>
-			<artifactId>spring</artifactId>
-			<version>1.2.6</version>
-			<type>jar</type>
+		   <groupId>${sakai.spring.groupId}</groupId>
+		   <artifactId>${sakai.spring.artifactId}</artifactId>
+		   <version>${sakai.spring.version}</version>
 		</dependency>
-		<dependency>
 			<!-- Doug Lea's Oswego concurrency package. The forerunner of JSR 166
 				java.util.concurrent -->
+				<dependency>
 			<groupId>concurrent</groupId>
 			<artifactId>concurrent</artifactId>
 			<version>1.3.4</version>
@@ -208,11 +207,7 @@
 			<artifactId>sakai-util-api</artifactId>
 			<version>${sakai.version}</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>sakaiproject</groupId>
-			<artifactId>sakai-jldap-provider</artifactId>
-			<version>${sakai.version}</version>
-		</dependency>-->
+
 		<!-- Commons JARS put in shared/lib by Sakai -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -225,6 +220,22 @@
 			<artifactId>commons-logging</artifactId>
 			<version>1.0.4</version>
 		</dependency>
+		<dependency> 
+			<groupId>com.sun.xml</groupId> 
+			<artifactId>jaxrpc-ri</artifactId> 
+ 			<version>1.0_01</version> 
+ 			<properties> 
+				<war.bundle>true</war.bundle> 
+			</properties> 
+		</dependency> 
+	<dependency>
+			<groupId>com.sun.xml</groupId> 
+			<artifactId>soap</artifactId> 
+ 			<version>1.0_02</version> 
+ 			<properties> 
+				<war.bundle>true</war.bundle> 
+			</properties> 
+		</dependency> 
 		<!-- ldap -->
 		<dependency> 
 			<groupId>openldap</groupId> 
@@ -246,7 +257,7 @@
  			<version>1.0.2</version> 
 		</dependency>
 		
-		<dependency>
+		<!-- <dependency>
 			<groupId>novell</groupId>
 			<artifactId>gwss</artifactId>
 			<version>2007.02.15-1</version>
@@ -254,7 +265,7 @@
 			<properties>
 				<war.bundle>true</war.bundle>
 			</properties>
-		</dependency>
+		</dependency>-->	
 		 <dependency>
 			<groupId>axis</groupId>
 			<artifactId>axis-jaxrpc</artifactId>
