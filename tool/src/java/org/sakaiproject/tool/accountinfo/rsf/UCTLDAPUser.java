@@ -23,11 +23,8 @@ package org.sakaiproject.tool.accountinfo.rsf;
 
 import java.util.Date;
 import java.text.DateFormat;
-import java.math.BigDecimal;
 import java.security.*;
 
-import com.novell.groupwise.ws.Authentication;
-import com.novell.groupwise.ws.PlainText;
 import com.novell.ldap.LDAPConnection;
 import com.novell.ldap.LDAPEntry;
 import com.novell.ldap.LDAPException;
@@ -37,9 +34,6 @@ import com.novell.ldap.LDAPSearchResults;
 import com.novell.ldap.LDAPSocketFactory;
 import com.novell.ldap.LDAPConstraints;
 import com.novell.ldap.LDAPAttribute;
-import com.novell.groupwise.ws.*;
-import javax.xml.rpc.Stub;
-import com.sun.xml.rpc.client.BasicService;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -59,11 +53,9 @@ import org.sakaiproject.api.common.type.Type;
 import org.sakaiproject.component.cover.ComponentManager;
 
 import java.util.Properties;
+import javax.mail.*;
 import com.sun.mail.imap.*;
 import java.text.SimpleDateFormat;
-import com.maintainet.gwsoap.EasySoap;
-
-//import javax.rmi.CORBA.Stub;
 /*
  * a method to get a decorated user for LDAP.
  * 
@@ -79,7 +71,6 @@ public class UCTLDAPUser  {
 	private int operationTimeout = 5000; //default timeout for operations (in ms)
 	private Date cacheTime;
 	private Date DOB;
-	private String gwPostOffice;
 	/*
 	 *  Values for the user
 	 */
@@ -88,7 +79,7 @@ public class UCTLDAPUser  {
 	private Date accountExpiry;
 	private int unReadEmail;
 	private boolean accountIsExpired = false;
-	private Integer newMailMessages;
+	private int newMailMessages;
 	
 	
 	
@@ -123,8 +114,7 @@ public class UCTLDAPUser  {
 				"aliasedObjectName",
 				GRACELOGINSTOTAL,
 				GRACELOGINSREMAINING,
-				PASSWORDEXPIRATIONTIME,
-				"nGWPostOffice"
+				PASSWORDEXPIRATIONTIME
 		};
 		Date myDate = null;
 		
@@ -137,8 +127,8 @@ public class UCTLDAPUser  {
 		sakaiPersonManager = getSakaiPersonManager();
 		SakaiPerson sp = sakaiPersonManager.getSakaiPerson(user.getId(), sakaiPersonManager.getSystemMutableType());
 		if (sp !=null)
-			//DOB = sp.getDOB();
-		DOB = new Date();
+			DOB = sp.getDOB();
+		
 
 		//connect to ldap server
 		try {
@@ -211,12 +201,8 @@ public class UCTLDAPUser  {
 				//strDate ="21060816070250Z";
 			}
 			
-			//find the users postoffice: nGWPostOffice: cn=STAFFP1,ou=Gware,ou=gw,ou=services,o=uct
-			String po = thisLdap.getAttribute("nGWPostOffice").getStringValue();
-			//we need to parse this
-			po = po.substring(3, po.indexOf(','));
-			m_log.info("got po" + po);
-			
+
+
 			} else {
 				m_log.warn("not found in LDAP: " + user.getDisplayId());
 			}
@@ -228,23 +214,61 @@ public class UCTLDAPUser  {
 			 * 
 			*/
 			
-
+//			 Get a Properties object
+			if (TRY_LDAP) {
+				
+				  Security.addProvider( new com.sun.net.ssl.internal.ssl.Provider());
+				  String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+			      
+			      Properties props = new Properties();
+			 
+			      props.setProperty("mail.store.protocol", "imap");
+			 
+			      props.setProperty("mail.imap.host", IMAP_HOST);
+			      props.setProperty("mail.imap.port", "993");
+			 
+			      props.setProperty( "mail.imap.socketFactory.class", SSL_FACTORY);
+			 
+			      props.setProperty( "mail.imap.socketFactory.fallback", "false");
+			 
+			      props.setProperty( "mail.imap.socketFactory.port", "993");
+			        
+			      java.security.Security.setProperty( "ssl.SocketFactory.provider", SSL_FACTORY);
+			      javax.mail.Session s = javax.mail.Session.getDefaultInstance(props, null);
+			      s.setDebug(true);
+			      
+			      Store store = s.getStore("imap");
+			      
+			      try
+			      {
+			    	  String pass = (String)SessionManager.getCurrentSession().getAttribute("netPasswd");
+			    	  m_log.info(IMAP_HOST + " " + "dhorwitz_its_main_uct " + pass);
+			    	  store.connect(IMAP_HOST, 993,"dhorwitz_its_main_uct", pass);
+			          Folder folder = store.getDefaultFolder();
+			          int newMessages = folder.getNewMessageCount();
+			          m_log.info("Got some new messages!" + newMessages);
+			          setNewMailMessages(newMessages);
+			          folder.close(true);
+			      }
+			      catch (AuthenticationFailedException afe)
+			      {
+			          // no valid authentication
+			    	  m_log.warn("Auth failed for " + user.getEid() + " on mail" + afe);
+			    	  afe.printStackTrace();
+			      }
+			      catch (Exception ge)
+			      
+			      {
+			    	  ge.printStackTrace();
+			      }
+			}
 			
 		}
 		catch (Exception e) {
 			
 			e.printStackTrace();
 		}
-		String PO= "staffp1";
-		try {
-		EasySoap es = new EasySoap(PO + ".uct.ac.za","7191","",user.getEid(),"connect5");
-		m_log.info("logged in as " + es.getUser());
-		es.logout();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		//this.getUserNewMail(user.getEid(), PO);
+		 
 		
 		this.cacheTime=new Date();	
 	
@@ -293,19 +317,13 @@ public class UCTLDAPUser  {
 	}
 	
 	
-	public Integer getNewMailMessages(){
+	public int getNewMailMessages(){
 		return newMailMessages;
 	}
 	
-	public void setNewMailMessages(Integer newVal){
+	public void setNewMailMessages(int newVal){
 		newMailMessages = newVal;
 	}
-	
-	
-	public Date getDOB() {
-		return this.DOB;
-	}
-	
 	//internal methods adopted from the Jldap porvidor
 	//get a specific entry from the directory 
 	private LDAPEntry getEntryFromDirectory(String dn, LDAPConnection conn)
@@ -314,6 +332,7 @@ public class UCTLDAPUser  {
 		LDAPEntry nextEntry = null;
 		m_log.debug("About to get entry for " + dn);
 		nextEntry = conn.read(dn);
+		//System.out.println("found " + i + "results");
 		return nextEntry;
 	}
 	
@@ -352,45 +371,8 @@ public class UCTLDAPUser  {
 		return "o=uct";
 	}
 	
-	private Integer getUserNewMail(String userId, String PO) {
-		//First setup access to GroupWise server
-
-		Stub clientStub = (Stub)new GroupwiseService_Impl().getGroupwiseSOAPPort();
-
-		// Default port is 7191
-
-		 clientStub._setProperty( javax.xml.rpc.Stub.ENDPOINT_ADDRESS_PROPERTY, "http://" + PO +"uct.ac.za:7191/soap");
-		 GroupWisePortType gwService = (GroupWisePortType)clientStub;
-
-		  // Now setup the login credentials
-
-		  PlainText ptLogin = new PlainText();
-		  
-		  ptLogin.setUsername(userId);
-
-		  ptLogin.setPassword("connect5");
-
-		  // Make the call to the loginRequest
-		  try {
-			  LoginResponse loginRes = gwService.loginRequest(( Authentication)ptLogin, 
-					  "us", 
-					  new BigDecimal(1.0), 
-					  "Our GW Client", 
-					  false );
-
-			  if ( loginRes.getStatus().getCode() == 0 ) {
-
-				  // Within here we can pull out the various response values like the following
-
-				  //loginRes.getUserInfo().getName();
-
-			  }
-		  }
-		  catch (Exception e ) {
-			  e.printStackTrace();
-		  }
-
-		  return null;
+	public Date getDOB() {
+		return this.DOB;
 	}
-
+	
 }
