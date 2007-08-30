@@ -127,7 +127,7 @@ public class UCTLDAPUser  {
 		sakaiPersonManager = getSakaiPersonManager();
 		SakaiPerson sp = sakaiPersonManager.getSakaiPerson(user.getId(), sakaiPersonManager.getSystemMutableType());
 		if (sp !=null)
-			DOB = sp.getDOB();
+			DOB = sp.getDateOfBirth();
 		
 
 		//connect to ldap server
