@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>master</artifactId>
+    <groupId>org.sakaiproject</groupId>
+    <version>M2</version>
+    <relativePath>../../master/pom.xml</relativePath>
+  </parent>
+  <name>UCT account info  tool</name>
+  <groupId>org.sakaiproject</groupId>
+  <artifactId>sakai-rsf-accountinfo-tool</artifactId>
+  <organization>
+    <name>Sakai Foundation</name>
+    <url>http://sakaiproject.org/</url>
+  </organization>
+  <inceptionYear>2006</inceptionYear>
+  <packaging>war</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>sakairsf</artifactId>
+      <version>${rsfutil.version}-sakai_2.2.x</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+<!-- begin standard RSF dependencies here -->
+    <dependency>
+      <groupId>uk.org.ponder.ponderutilcore</groupId>
+      <artifactId>ponderutilcore</artifactId>
+      <version>${ponderutilcore.version}</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>uk.org.ponder.j-servletutil</groupId>
+      <artifactId>j-servletutil</artifactId>
+      <version>${jservletutil.version}</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>uk.org.ponder.rsfutil</groupId>
+      <artifactId>rsfutil</artifactId>
+      <version>${rsfutil.version}</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>servletapi</groupId>
+      <artifactId>servletapi</artifactId>
+      <version>2.3</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.9</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>${sakai.spring.groupId}</groupId>
+      <artifactId>${sakai.spring.artifactId}</artifactId>
+      <version>${sakai.spring.version}</version>
+    </dependency>
+<!-- Doug Lea's Oswego concurrency package. The forerunner of JSR 166
+				java.util.concurrent -->
+    <dependency>
+      <groupId>concurrent</groupId>
+      <artifactId>concurrent</artifactId>
+      <version>1.3.4</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+<!-- Aleksander Slominski's (U Indiana) lightning-fast XML pull parser -->
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3</artifactId>
+      <version>1.1.3.4-RC8_min</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-common-edu-person-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-component</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+<!-- The sakaiproject plugin let's us build our tool without building
+			the entire sakai code base -->
+<!-- we are running a webapp in tomcat so we need the servlet api -->
+    <dependency>
+      <groupId>servletapi</groupId>
+      <artifactId>servletapi</artifactId>
+      <version>2.4</version>
+    </dependency>
+<!-- Spring and Hibernate dependencies. -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate</artifactId>
+      <version>3.1.3</version>
+    </dependency>
+<!-- Various Sakai dependencies -->
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-authz-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+<!-- this is needed to use the ServerConfigurationService -->
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-component-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+<!-- this is needed to access the SqlService -->
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-db-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-entity-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-event-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-site-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-tool-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-user-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-common-type-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-common-manager-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-util</artifactId>
+      <version>${sakai.version}</version>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-util-api</artifactId>
+      <version>${sakai.version}</version>
+    </dependency>
+<!-- Commons JARS put in shared/lib by Sakai -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml</groupId>
+      <artifactId>jaxrpc-ri</artifactId>
+      <version>1.0_01</version>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml</groupId>
+      <artifactId>soap</artifactId>
+      <version>1.0_02</version>
+<!--properties:  war.bundle: true -->
+    </dependency>
+<!-- ldap -->
+    <dependency>
+      <groupId>openldap</groupId>
+      <artifactId>ldap</artifactId>
+      <version>2005.03.29</version>
+<!--properties:  war.bundle: true -->
+    </dependency>
+    <dependency>
+      <groupId>javamail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+<!-- needed for mail? -->
+    <dependency>
+      <groupId>activation</groupId>
+      <artifactId>activation</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+<!-- <dependency>
+			<groupId>novell</groupId>
+			<artifactId>gwss</artifactId>
+			<version>2007.02.15-1</version>
+			<type>jar</type>
+			<properties>
+				<war.bundle>true</war.bundle>
+			</properties>
+		</dependency>-->
+    <dependency>
+      <groupId>axis</groupId>
+      <artifactId>axis-jaxrpc</artifactId>
+      <version>1.3</version>
+      <type>jar</type>
+<!--properties:  war.bundle: true -->
+    </dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/bundle</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+    <sourceDirectory>src/java</sourceDirectory>
+  </build>
+</project>
