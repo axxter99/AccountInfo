@@ -20,7 +20,7 @@
     <dependency>
       <groupId>uk.org.ponder.sakairsf</groupId>
       <artifactId>sakairsf</artifactId>
-      <version>0.7.2RC2-sakai_2.2.x</version>
+      <version>0.7.2-sakai_2.2.x</version>
       <type>jar</type>
 <!--properties:  war.bundle: true -->
     </dependency>
@@ -28,21 +28,21 @@
     <dependency>
       <groupId>uk.org.ponder</groupId>
       <artifactId>ponderutilcore</artifactId>
-      <version>1.2.2RC2</version>
+      <version>1.2.2</version>
       <type>jar</type>
 <!--properties:  war.bundle: true -->
     </dependency>
     <dependency>
       <groupId>uk.org.ponder</groupId>
       <artifactId>j-servletutil</artifactId>
-      <version>1.2.2RC2</version>
+      <version>1.2.2</version>
       <type>jar</type>
 <!--properties:  war.bundle: true -->
     </dependency>
     <dependency>
       <groupId>uk.org.ponder.rsfutil</groupId>
       <artifactId>rsfutil</artifactId>
-      <version>0.7.2RC2</version>
+      <version>0.7.2</version>
       <type>jar</type>
 <!--properties:  war.bundle: true -->
     </dependency>
