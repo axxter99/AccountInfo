@@ -47,6 +47,7 @@ import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
+import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
@@ -76,6 +77,10 @@ public class AccountInfoProducer implements ViewComponentProducer,
   private LocaleGetter localegetter;
   
   private long CACHETTL = 300000;
+  
+  
+  private static String PS_STUDENT_LINK = "https://isisweb.uct.ac.za/servlets/iclientservlet/prd/?cmd=login";
+  private static String PS_STAFF_LINK = "https://isisweb.uct.ac.za/servlets/iclientservlet/prd/?cmd=login";
 
   public String getViewID() {
 	 System.out.println("GOT View " + VIEW_ID);
@@ -141,11 +146,20 @@ public class AccountInfoProducer implements ViewComponentProducer,
 		  String todayStr = monthday.format(new Date());
 		  
 		  if (dob != null && dobStr.equals(todayStr)) {
-			  m_log.info(" its this users BirthDay!");
+			  m_log.info(" its this users Birthday!");
 			  UIOutput.make(tofill, "bday");
 		  }
 	  }
 
+	  
+	  if (user.getType().equals("Student")) {
+		  
+		  UILink.make(tofill, "ps_login", "PeopleSoft Selfservice", PS_STUDENT_LINK);
+	  } else if (user.getType().equals("Staff")) {
+		  //UILink.make(tofill,"PeopleSoft Selfservice", PS_STAFF_LINK);
+	  }
+	  		
+	  
   }
 
   public List reportNavigationCases() {
