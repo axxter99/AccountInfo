@@ -25,32 +25,23 @@ package org.sakaiproject.tool.accountinfo.rsf;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.ToolManager;
-//import org.sakaiproject.tool.tasklist.api.Task;
-///import org.sakaiproject.tool.tasklist.api.TaskListManager;
+import org.sakaiproject.tool.cover.SessionManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.messageutil.MessageLocator;
-import uk.org.ponder.rsf.components.UIBranchContainer;
-import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
-import uk.org.ponder.rsf.components.UIELBinding;
-import uk.org.ponder.rsf.components.UIForm;
-import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
-import uk.org.ponder.rsf.components.UISelect;
-import uk.org.ponder.rsf.components.UISelectChoice;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -58,14 +49,6 @@ import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
-import uk.org.ponder.localeutil.LocaleGetter;
-import uk.org.ponder.stringutil.StringList;
-
-import org.sakaiproject.tool.accountinfo.rsf.UCTLDAPUser;
-import org.sakaiproject.tool.cover.SessionManager;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-//import edu.amc.sakai.user.JLDAPDirectoryProvider;
 
 
 public class AccountInfoProducer implements ViewComponentProducer,
@@ -79,8 +62,7 @@ public class AccountInfoProducer implements ViewComponentProducer,
   private long CACHETTL = 300000;
   
   
-  private static String PS_STUDENT_LINK = "https://isisweb.uct.ac.za/servlets/iclientservlet/prd/?cmd=login";
-  private static String PS_STAFF_LINK = "https://isisweb.uct.ac.za/servlets/iclientservlet/prd/?cmd=login";
+  
 
   public String getViewID() {
 	 System.out.println("GOT View " + VIEW_ID);
@@ -154,9 +136,9 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  
 	  if (user.getType().equals("student")) {
 		  
-		  UILink.make(tofill, "ps_login", "PeopleSoft Selfservice", PS_STUDENT_LINK);
+		  UILink.make(tofill, "ps_login", "ps_link_text", messageLocator.getMessage("ps_staff_link"));
 	  } else if (user.getType().equals("staff")) {
-		  //UILink.make(tofill,"PeopleSoft Selfservice", PS_STAFF_LINK);
+		  //UILink.make(tofill,"ps_link_text", messageLocator.getMessage("ps_staff_link"));
 	  }
 	  		
 	  
