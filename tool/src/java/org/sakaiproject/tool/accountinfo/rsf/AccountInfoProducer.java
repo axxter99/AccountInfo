@@ -152,10 +152,10 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  }
 
 	  
-	  if (user.getType().equals("Student")) {
+	  if (user.getType().equals("student")) {
 		  
 		  UILink.make(tofill, "ps_login", "PeopleSoft Selfservice", PS_STUDENT_LINK);
-	  } else if (user.getType().equals("Staff")) {
+	  } else if (user.getType().equals("staff")) {
 		  //UILink.make(tofill,"PeopleSoft Selfservice", PS_STAFF_LINK);
 	  }
 	  		
