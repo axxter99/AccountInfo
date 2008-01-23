@@ -42,6 +42,7 @@ import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
+import uk.org.ponder.rsf.components.decorators.DecoratorList;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -133,10 +134,13 @@ public class AccountInfoProducer implements ViewComponentProducer,
 		  }
 	  }
 
+	  UILink pLink = UILink.make(tofill, "password_link",messageLocator.getMessage("pwd_selfs_text"), messageLocator.getMessage("pwd_selfs_url"));
+	  //pLink.decorators = new DecoratorList(new UITargetDecorator("_blank"));
 	  
 	  if (user.getType().equals("student")) {
+		  UIOutput.make(tofill, "seperator");
+		  UILink psLink = UILink.make(tofill, "ps_login", messageLocator.getMessage("ps_link_text"), messageLocator.getMessage("ps_staff_link"));
 		  
-		  UILink.make(tofill, "ps_login", "ps_link_text", messageLocator.getMessage("ps_staff_link"));
 	  } else if (user.getType().equals("staff")) {
 		  //UILink.make(tofill,"ps_link_text", messageLocator.getMessage("ps_staff_link"));
 	  }
