@@ -85,18 +85,9 @@
     </dependency>
 <!-- The sakaiproject plugin let's us build our tool without building
 			the entire sakai code base -->
-<!-- we are running a webapp in tomcat so we need the servlet api -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>${sakai.servletapi.version}</version>
-    </dependency>
+
 <!-- Spring and Hibernate dependencies. -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate</artifactId>
-      <version>3.1.3</version>
-    </dependency>
+
 <!-- Various Sakai dependencies -->
     <dependency>
       <groupId>org.sakaiproject</groupId>
