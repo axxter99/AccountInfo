@@ -10,7 +10,7 @@
 	<groupId>org.sakaiproject.accountinfo</groupId>
 	<artifactId>AccountInfoRSF</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<modules>
 		<module>tool</module>
 	</modules>
@@ -28,8 +28,8 @@
 	
 	
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfoRSF-1.0</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfoRSF-1.0</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfoRSF-1.0</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</url>
 	</scm>
 </project>
