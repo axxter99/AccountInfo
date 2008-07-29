@@ -31,8 +31,8 @@
 	
 	
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/Accountinfo/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/Accountinfo/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/Accountinfo/trunk/</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</url>
 	</scm>
 </project>
