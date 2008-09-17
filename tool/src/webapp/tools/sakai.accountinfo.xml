@@ -3,7 +3,7 @@
 <registration>
 	<tool id="sakai.rsf.accountinfo"
 		title="UCT Account Information"
-		description="Account inf for uct users">
+		description="Account info for uct users">
 	<configuration name="help.button" value="true" />
 	</tool>	
 </registration>
