@@ -146,7 +146,7 @@ public class AccountInfoProducer implements ViewComponentProducer,
 		  UILink psLink = UILink.make(tofill, "ps_login", messageLocator.getMessage("ps_link_text"), messageLocator.getMessage("ps_student_link"));
 		  
 	  } else if (user.getType().equals("staff")) {
-		  UILink.make(tofill,"ps_link_text", messageLocator.getMessage("ps_link_text"), messageLocator.getMessage("ps_staff_link"));
+		  UILink.make(tofill,"ps_login", messageLocator.getMessage("ps_link_text"), messageLocator.getMessage("ps_staff_link"));
 	  }
 	  		
 	  

@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>master</artifactId>
+		<groupId>org.sakaiproject</groupId>
+		<version>2.5.0</version>
+		<relativePath>../master/pom.xml</relativePath>
+	</parent>
+	<name>Sakai</name>
+	<groupId>org.sakaiproject.accountinfo</groupId>
+	<artifactId>AccountInfoRSF</artifactId>
+	<packaging>pom</packaging>
+	<version>1.2-SNAPSHOT</version>
+	<modules>
+		<module>tool</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.sakaiproject</groupId>
+				<artifactId>sakai-util</artifactId>
+				<version>2.5.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	
+	
+	<scm>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</url>
+	</scm>
+</project>
