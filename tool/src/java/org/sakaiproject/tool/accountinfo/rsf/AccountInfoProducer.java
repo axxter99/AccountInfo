@@ -141,8 +141,11 @@ public class AccountInfoProducer implements ViewComponentProducer,
 	  UILink pLink = UILink.make(tofill, "password_link",messageLocator.getMessage("pwd_selfs_text"), messageLocator.getMessage("pwd_selfs_url"));
 	  //pLink.decorators = new DecoratorList(new UITargetDecorator("_blank"));
 	  
-	  if (user.getType().equals("student")) {
+	  if (user.getType().equals("student") || user.getType().equals("staff")) 	
 		  UIOutput.make(tofill, "seperator");
+	  
+	  if (user.getType().equals("student")) {
+		  
 		  UILink psLink = UILink.make(tofill, "ps_login", messageLocator.getMessage("ps_link_text"), messageLocator.getMessage("ps_student_link"));
 		  
 	  } else if (user.getType().equals("staff")) {
