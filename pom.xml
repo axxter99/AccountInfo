@@ -6,7 +6,7 @@
 		<version>2.5.0</version>
 		<relativePath>../master/pom.xml</relativePath>
 	</parent>
-	<name>Sakai</name>
+	<name>UCT Account info tool</name>
 	<groupId>org.sakaiproject.accountinfo</groupId>
 	<artifactId>AccountInfoRSF</artifactId>
 	<packaging>pom</packaging>
