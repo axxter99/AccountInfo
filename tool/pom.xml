@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>AccountInfoRSF</artifactId>
-    <groupId>org.sakaiproject.accountinfo</groupId>
+    <artifactId>AccountInfo</artifactId>
+    <groupId>org.sakaiproject</groupId>
     <version>1.5-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <name>UCT account info  tool</name>
   <groupId>org.sakaiproject.accountinfo</groupId>
-  <artifactId>sakai-rsf-accountinfo-tool</artifactId>
+  <artifactId>sakai-accountinfo-tool</artifactId>
   <organization>
     <name>Sakai Foundation</name>
     <url>http://sakaiproject.org/</url>
@@ -60,41 +60,17 @@
 
 <!-- Various Sakai dependencies -->
     <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-authz-api</artifactId>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-api</artifactId>
     </dependency>
 <!-- this is needed to use the ServerConfigurationService -->
     <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-component-api</artifactId>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-component-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>org.sakaiproject</groupId>
       <artifactId>sakai-common-edu-person-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-component</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-entity-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-event-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-site-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-tool-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-user-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.sakaiproject</groupId>
@@ -104,21 +80,18 @@
       <groupId>org.sakaiproject</groupId>
       <artifactId>sakai-common-manager-api</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>sakai-util</artifactId>
-      <version>${sakai.version}</version>
-    </dependency>
+    <!-- <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>kernel-util</artifactId>
+    </dependency> -->
 <!-- Commons JARS put in shared/lib by Sakai -->
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
-      <version>2.1</version>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
-      <version>1.0.4</version>
     </dependency>
 <!-- ldap -->
     <dependency>
@@ -129,13 +102,11 @@
     <dependency>
       <groupId>javax.mail</groupId>
       <artifactId>mail</artifactId>
-      <version>1.3.1</version>
     </dependency>
 <!-- needed for mail? -->
     <dependency>
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
-      <version>1.0.2</version>
     </dependency>
   </dependencies>
   <build>
