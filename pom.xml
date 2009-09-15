@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>master</artifactId>
@@ -11,7 +10,7 @@
 	<groupId>org.sakaiproject</groupId>
 	<artifactId>AccountInfo</artifactId>
 	<packaging>pom</packaging>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<modules>
 		<module>tool</module>
 	</modules>
@@ -32,8 +31,8 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfo-1.5</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfo-1.5</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfo-1.5</url>
 	</scm>
 </project>
