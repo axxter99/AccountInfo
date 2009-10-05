@@ -21,41 +21,32 @@
 
 package org.sakaiproject.tool.accountinfo.rsf;
 
-import java.util.Date;
+import java.security.Security;
 import java.text.DateFormat;
-import java.security.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
 
+import javax.mail.AuthenticationFailedException;
+import javax.mail.Folder;
+import javax.mail.Store;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.api.common.edu.person.SakaiPerson;
+import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.component.cover.ComponentManager;
+import org.sakaiproject.component.cover.ServerConfigurationService;
+import org.sakaiproject.tool.cover.SessionManager;
+import org.sakaiproject.user.api.User;
+
+import com.novell.ldap.LDAPAttribute;
 import com.novell.ldap.LDAPConnection;
+import com.novell.ldap.LDAPConstraints;
 import com.novell.ldap.LDAPEntry;
 import com.novell.ldap.LDAPException;
-import com.novell.ldap.LDAPJSSESecureSocketFactory;
 import com.novell.ldap.LDAPSearchConstraints;
 import com.novell.ldap.LDAPSearchResults;
-import com.novell.ldap.LDAPSocketFactory;
-import com.novell.ldap.LDAPConstraints;
-import com.novell.ldap.LDAPAttribute;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.user.api.UserDirectoryService;
-import org.sakaiproject.user.api.User; 
-import org.sakaiproject.tool.cover.SessionManager;
-import org.sakaiproject.tool.api.Session;
-import org.sakaiproject.entity.api.EntityProducer;
-import org.sakaiproject.component.cover.ServerConfigurationService;
-import java.util.Properties;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
-import org.sakaiproject.api.common.edu.person.SakaiPerson;
-import org.sakaiproject.api.common.manager.Persistable;
-import org.sakaiproject.api.common.type.Type;
-import org.sakaiproject.component.cover.ComponentManager;
-
-import java.util.Properties;
-import javax.mail.*;
-import com.sun.mail.imap.*;
-import java.text.SimpleDateFormat;
 /*
  * a method to get a decorated user for LDAP.
  * 
