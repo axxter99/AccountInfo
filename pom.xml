@@ -10,7 +10,7 @@
 	<groupId>org.sakaiproject</groupId>
 	<artifactId>AccountInfo</artifactId>
 	<packaging>pom</packaging>
-	<version>1.6-SNAPSHOT</version>
+	<version>1.6</version>
 	<modules>
 		<module>tool</module>
 	</modules>
@@ -31,9 +31,9 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfo-1.6</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfo-1.6</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/tags/AccountInfo-1.6</url>
 	</scm>
 
 	<repositories>
