@@ -32,7 +32,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.tool.api.Session;
-import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.tool.cover.SessionManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
@@ -42,7 +41,6 @@ import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
-import uk.org.ponder.rsf.components.decorators.DecoratorList;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -56,7 +54,6 @@ public class AccountInfoProducer implements ViewComponentProducer,
     NavigationCaseReporter, DefaultView {
   public static final String VIEW_ID = "AccountInfo";
   private UserDirectoryService userDirectoryService;
-  private ToolManager toolManager;
   private MessageLocator messageLocator;
   private LocaleGetter localegetter;
   
@@ -80,9 +77,6 @@ public class AccountInfoProducer implements ViewComponentProducer,
   }
 
   
-  public void setToolManager(ToolManager toolManager) {
-    this.toolManager = toolManager;
-  }
 
   public void setLocaleGetter(LocaleGetter localegetter) {
     this.localegetter = localegetter;

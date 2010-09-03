@@ -20,8 +20,6 @@
 
 	<bean id="AccountInfoProducer"
 		class="org.sakaiproject.tool.accountinfo.rsf.AccountInfoProducer">
-		<property name="toolManager"
-			ref="org.sakaiproject.tool.api.ToolManager" />
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="localeGetter" ref="requestLocaleProxy" />
