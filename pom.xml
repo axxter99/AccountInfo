@@ -7,8 +7,8 @@
 		<relativePath>../master/pom.xml</relativePath>
 	</parent>
 	<name>UCT Account info tool</name>
-	<groupId>org.sakaiproject</groupId>
-	<artifactId>AccountInfo</artifactId>
+	<groupId>org.sakaiproject.accountinfo</groupId>
+	<artifactId>accountinfo</artifactId>
 	<packaging>pom</packaging>
 	<version>1.7-SNAPSHOT</version>
 	<modules>
