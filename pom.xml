@@ -31,9 +31,9 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/trunk/</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/branches/AccountInfo-1.7.x</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/AccountInfo/branches/AccountInfo-1.7.x</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/AccountInfo/branches/AccountInfo-1.7.x</url>
 	</scm>
 
 	<repositories>
