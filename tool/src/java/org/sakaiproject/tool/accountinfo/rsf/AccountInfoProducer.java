@@ -32,7 +32,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.tool.api.Session;
-import org.sakaiproject.tool.cover.SessionManager;
+import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
@@ -60,7 +60,10 @@ public class AccountInfoProducer implements ViewComponentProducer,
   private long CACHETTL = 300000;
   
   
-  
+  private SessionManager sessionManager;
+  public void setSessionManager(SessionManager su) {
+	  sessionManager = su;
+  }
 
   public String getViewID() {
 	 System.out.println("GOT View " + VIEW_ID);
@@ -82,12 +85,13 @@ public class AccountInfoProducer implements ViewComponentProducer,
     this.localegetter = localegetter;
   }
 
+ 
   public void fillComponents(UIContainer tofill, ViewParameters viewparams, ComponentChecker checker) 
   {
 	  
 	  User user = userDirectoryService.getCurrentUser();
 	  String username = user.getDisplayName();
-		Session session = SessionManager.getCurrentSession();
+		Session session = sessionManager.getCurrentSession();
 		UCTLDAPUser uctUser = null;
 		if (session.getAttribute("ldapUser")==null) {	
 		  uctUser = new UCTLDAPUser(user);
