@@ -39,6 +39,7 @@ import org.sakaiproject.user.api.UserDirectoryService;
 import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
@@ -103,9 +104,11 @@ public class AccountInfoProducer implements ViewComponentProducer, NavigationCas
 		UIOutput.make(tofill, "current-username", username);
 
 		Date passExp = uctUser.getAccountExpiry();
+		m_log.info("Acc Epx.: " + passExp);
 		if (passExp != null) {
 			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
-			UIOutput.make(tofill, "ldap-pass-expires", df.format(passExp));
+			UIForm form = UIForm.make(tofill, "passEx:");
+			UIOutput.make(form, "ldap-pass-expires", df.format(passExp));
 			if (uctUser.getAccountIsExpired() == true) {
 				UIOutput.make(tofill, "ldap-password-good", messageLocator.getMessage("passwd_exp_msg"));
 				Object[] rep = new Object[] { (Object) uctUser.getGraceLoginsTotal(),
@@ -113,7 +116,7 @@ public class AccountInfoProducer implements ViewComponentProducer, NavigationCas
 
 				UIOutput.make(tofill, "ldap-gracelogins-remaining",
 						messageLocator.getMessage("grace_logins_label", rep));
-			}
+			} 
 
 		}
 

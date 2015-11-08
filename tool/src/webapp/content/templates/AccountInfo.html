@@ -2,20 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
 <head>
 <title>Account Info</title>
-<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
-<link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
-<script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
+<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter"/>
+<link href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter"/>
+<script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js" rsf:id="scr=portal-matter"></script>
 
 </head>
 
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
 
-<h3 class="insColor insBak insBorder" rsf:id="accountinfo-title">Account Info</h3>
+<h3 rsf:id="accountinfo-title">Account Info</h3>
 
-Hello, <span rsf:id="current-username">Sakai Administrator</span>
+<p>Hello, <span rsf:id="current-username">Sakai Administrator</span></p>
 <div rsf:id="bday"><P>Happy Birthday! From the Vula team</P></div>
-<div>Your password expires on: <span rsf:id="ldap-pass-expires">Password Expires on</span></div>
+<div rsf:id="passEx:">Your password expires on: <span rsf:id="ldap-pass-expires">Password Expires on</span></div>
 <div rsf:id="ldap-gracelogins-remaining">graceloginsremaining</div>
 <div rsf:id="ldap-password-good">Your password has not expired</div>
 <div><a href="http://password.uct.ac.za" target="_blank" rsf:id="password_link">Manage your password</a> <span rsf:id="seperator">|</span> <a href="https://isisweb.uct.ac.za/servlets/iclientservlet/prd/?cmd=login" rsf:id="ps_login" target="_blank">Manage your password</a></div>
