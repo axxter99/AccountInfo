@@ -10,7 +10,7 @@
 	<groupId>org.sakaiproject.accountinfo</groupId>
 	<artifactId>accountinfo</artifactId>
 	<packaging>pom</packaging>
-	<version>2.0-SNAPSHOT</version>
+	<version>10-SNAPSHOT</version>
 	<modules>
 		<module>tool</module>
 	</modules>
