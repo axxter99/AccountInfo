@@ -104,11 +104,13 @@ public class AccountInfoProducer implements ViewComponentProducer, NavigationCas
 		UIOutput.make(tofill, "current-username", username);
 
 		Date passExp = uctUser.getAccountExpiry();
-		m_log.info("Acc Epx.: " + passExp);
+		m_log.info("Acc Expiry: " + passExp + "(" + user + ")");
 		if (passExp != null) {
+			
 			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
-			UIForm form = UIForm.make(tofill, "passEx:");
-			UIOutput.make(form, "ldap-pass-expires", df.format(passExp));
+			UIOutput.make(tofill, "passEx");
+			UIOutput.make(tofill, "ldap-pass-expires", passExp.toString());
+			m_log.debug(user +": "+ uctUser.getAccountIsExpired());
 			if (uctUser.getAccountIsExpired() == true) {
 				UIOutput.make(tofill, "ldap-password-good", messageLocator.getMessage("passwd_exp_msg"));
 				Object[] rep = new Object[] { (Object) uctUser.getGraceLoginsTotal(),
