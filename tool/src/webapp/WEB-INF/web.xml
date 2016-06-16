@@ -1,9 +1,7 @@
-<?xml version="1.0"?>
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
-	  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-  version="2.4">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+	
 	<display-name>sakai-accountInfo</display-name>
 	<description>UCT Account info</description>
 
@@ -68,9 +66,7 @@
       so that sakai.flowtalk appears in UI for Sakai 2.0, with
       new Sakai dispatching architecture. Note that this must agree with tool id -->
     <servlet-name>sakai.rsf.accountinfo</servlet-name>
-    <servlet-class>
-      uk.ac.cam.caret.sakai.rsf.servlet.ReasonableSakaiServlet
-    </servlet-class>
+    <servlet-class>org.sakaiproject.rsf.servlet.ReasonableSakaiServlet</servlet-class>
     <!--<load-on-startup>1</load-on-startup>-->
   </servlet>
   <!-- This is the mapping we would LIKE to apply, if it were supported by Sakai.
@@ -85,8 +81,6 @@
 		</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.sakaiproject.util.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.sakaiproject.util.SakaiContextLoaderListener</listener-class>
 	</listener>
 </web-app>
