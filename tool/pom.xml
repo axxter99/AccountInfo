@@ -3,7 +3,7 @@
   <parent>
     <artifactId>accountinfo</artifactId>
     <groupId>org.sakaiproject.accountinfo</groupId>
-    <version>10-SNAPSHOT</version>
+    <version>11-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <name>UCT account info  tool</name>
