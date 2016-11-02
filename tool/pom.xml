@@ -3,7 +3,7 @@
   <parent>
     <artifactId>accountinfo</artifactId>
     <groupId>org.sakaiproject.accountinfo</groupId>
-    <version>11-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <name>UCT account info  tool</name>
@@ -76,10 +76,10 @@
       <artifactId>ldap</artifactId>
       <version>2009.10.07</version>
     </dependency>
-    <dependency>
-      <groupId>javax.mail</groupId>
-      <artifactId>mail</artifactId>
-    </dependency>
+      <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
+      </dependency>
 <!-- needed for mail? -->
     <dependency>
       <groupId>javax.activation</groupId>
