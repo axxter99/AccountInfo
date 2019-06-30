@@ -36,10 +36,10 @@ import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.rsf.components.UIContainer;
-import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
@@ -50,6 +50,7 @@ import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
+@Slf4j
 public class AccountInfoProducer implements ViewComponentProducer, NavigationCaseReporter, DefaultView {
 	public static final String VIEW_ID = "AccountInfo";
 	private UserDirectoryService userDirectoryService;
@@ -68,8 +69,6 @@ public class AccountInfoProducer implements ViewComponentProducer, NavigationCas
 		System.out.println("GOT View " + VIEW_ID);
 		return VIEW_ID;
 	}
-
-	private static Log m_log = LogFactory.getLog(AccountInfoProducer.class);
 
 	public void setMessageLocator(MessageLocator messageLocator) {
 		this.messageLocator = messageLocator;
@@ -104,13 +103,13 @@ public class AccountInfoProducer implements ViewComponentProducer, NavigationCas
 		UIOutput.make(tofill, "current-username", username);
 
 		Date passExp = uctUser.getAccountExpiry();
-		m_log.info("Acc Expiry: " + passExp + "(" + user + ")");
+		log.info("Acc Expiry: " + passExp + "(" + user + ")");
 		if (passExp != null) {
 			
 			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, localegetter.get());
 			UIOutput.make(tofill, "passEx");
 			UIOutput.make(tofill, "ldap-pass-expires", passExp.toString());
-			m_log.debug(user +": "+ uctUser.getAccountIsExpired());
+			log.debug(user +": "+ uctUser.getAccountIsExpired());
 			if (uctUser.getAccountIsExpired() == true) {
 				UIOutput.make(tofill, "ldap-password-good", messageLocator.getMessage("passwd_exp_msg"));
 				Object[] rep = new Object[] { (Object) uctUser.getGraceLoginsTotal(),
@@ -129,7 +128,7 @@ public class AccountInfoProducer implements ViewComponentProducer, NavigationCas
 			String todayStr = monthday.format(new Date());
 
 			if (dob != null && dobStr.equals(todayStr)) {
-				m_log.info("its this users Birthday!");
+				log.info("its this users Birthday!");
 				UIOutput.make(tofill, "bday");
 			}
 		}
