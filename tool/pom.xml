@@ -3,7 +3,7 @@
   <parent>
     <artifactId>accountinfo</artifactId>
     <groupId>org.sakaiproject.accountinfo</groupId>
-    <version>12-SNAPSHOT</version>
+    <version>20-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <name>UCT account info  tool</name>
@@ -60,10 +60,10 @@
         <artifactId>javax.mail</artifactId>
       </dependency>
 <!-- needed for mail? -->
-    <dependency>
+    <!-- <dependency>
       <groupId>javax.activation</groupId>
-      <artifactId>activation</artifactId>
-    </dependency>
+      <artifactId>javax.activation</artifactId>
+    </dependency>-->
   </dependencies>
   <build>
     <resources>

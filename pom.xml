@@ -4,14 +4,14 @@
 	<parent>
 		<artifactId>master</artifactId>
 		<groupId>org.sakaiproject</groupId>
-		<version>12-SNAPSHOT</version>
+		<version>20-SNAPSHOT</version>
 		<relativePath>../master/pom.xml</relativePath>
 	</parent>
 	<name>UCT Account info</name>
 	<groupId>org.sakaiproject.accountinfo</groupId>
 	<artifactId>accountinfo</artifactId>
 	<packaging>pom</packaging>
-	<version>12-SNAPSHOT</version>
+	<version>20-SNAPSHOT</version>
 	<modules>
 		<module>tool</module>
 	</modules>
