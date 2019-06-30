@@ -21,18 +21,10 @@
 
 package org.sakaiproject.tool.accountinfo.rsf;
 
-import java.security.Security;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
 
-import javax.mail.AuthenticationFailedException;
-import javax.mail.Folder;
-import javax.mail.Store;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.component.cover.ComponentManager;
@@ -48,10 +40,13 @@ import com.novell.ldap.LDAPException;
 import com.novell.ldap.LDAPSearchConstraints;
 import com.novell.ldap.LDAPSearchResults;
 
+import lombok.extern.slf4j.Slf4j;
+
 /*
  * a method to get a decorated user for LDAP.
  * 
  */
+@Slf4j
 public class UCTLDAPUser {
 
 	private String ldapHost = ServerConfigurationService.getString("accountInfo.ldapServers"); // address
@@ -91,8 +86,6 @@ public class UCTLDAPUser {
 
 	private static final String IMAP_HOST = "mail.uct.ac.za";
 	private static final boolean TRY_LDAP = false;
-
-	private static Log m_log = LogFactory.getLog(UCTLDAPUser.class);
 
 	private SakaiPersonManager sakaiPersonManager;
 
@@ -172,14 +165,14 @@ public class UCTLDAPUser {
 					try {
 						myDate = myDateFormat.parse(strDate);
 					} catch (Exception e) {
-						m_log.error("Invalid Date Parser Exception");
+						log.error("Invalid Date Parser Exception");
 						e.printStackTrace();
 					}
 					// System.out.println("Finished Date Function " +
 					// myDate.getDay());
 					setAccountExpiry(myDate);
 					if (myDate.before(new Date())) {
-						m_log.debug("Account has expired! " + user.getEid());
+						log.debug("Account has expired! " + user.getEid());
 						setAccountIsExpired(true);
 					}
 				} else {
@@ -187,7 +180,7 @@ public class UCTLDAPUser {
 				}
 
 			} else {
-				m_log.warn("not found in LDAP: " + user.getDisplayId());
+				log.warn("not found in LDAP: " + user.getDisplayId());
 			}
 			// close the ldap connection
 			conn.disconnect();
@@ -304,7 +297,7 @@ public class UCTLDAPUser {
 	// get a specific entry from the directory
 	private LDAPEntry getEntryFromDirectory(String dn, LDAPConnection conn) throws LDAPException {
 		LDAPEntry nextEntry = null;
-		m_log.debug("About to get entry for " + dn);
+		log.debug("About to get entry for " + dn);
 		nextEntry = conn.read(dn);
 		// System.out.println("found " + i + "results");
 		return nextEntry;
